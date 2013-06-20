@@ -8,13 +8,13 @@ describe("topiary.fulfills", function() {
 		instance = new Class();
 	});
 
-	it("throws an Error if the object is null.", function() {
+	it("throws an error if the object is null.", function() {
 		expect( function() {
 			topiary.fulfills(null, Interface);
 		}).toThrow(err.NULL('Object', 'fulfills'));
 	});
 
-	it("throws an Error if the protocol is null.", function() {
+	it("throws an error if the protocol is null.", function() {
 		expect( function() {
 			topiary.fulfills(instance, null);
 		}).toThrow(err.NULL('Protocol', 'fulfills'));

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script src="lib/topiary.js" type="text/javascript"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+
+	topiary.install();
+
+	function Emitter() {
+		this.listeners = [];
+	}
+	Emitter.prototype.push = function(a) {this.listeners.push(a);};
+	Emitter.prototype.get = function() {return this.listeners;};
+
+	function Bob() {
+		this.listeners = 'boom!';
+	}
+	Bob.sandboxMixin(Emitter);
+	Bob.prototype.thingy = function() {
+		return this.listeners;
+	};
+
+
+
+	var x = new Bob();
+	var y = new Bob();
+
+	x.push("hi");
+	x.push("world");
+	y.push("2");
+	y.push("3");
+	y.listeners = 'world';
+
+	console.log(x.thingy());
+	console.log(x.get());
+
+	console.log(y.thingy());
+	console.log(y.get());
+</script>
+
+</body>
+</html>
