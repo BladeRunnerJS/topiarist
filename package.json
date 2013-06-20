@@ -1,0 +1,21 @@
+{
+	"name": "topiary",
+	"version": "0.0.1",
+	"author": "kybernetikos <kybernetikos@gmail.com>",
+	"description": "a micro library for extension, mixin and interfaces.",
+	"main": "./lib/topiary.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/caplin/topiary.git"
+	},
+	"keywords": [
+		"extend",
+		"inheritance",
+		"OO"
+	],
+	"dependencies" : {},
+	"bundledDependencies": [
+		"jasmine-standalone"
+	],
+	"license": "MIT"
+}
