@@ -298,7 +298,7 @@
 	 */
 	function isA(instance, parent) {
 		if (typeof parent !== 'function') { throw new TypeError(msg(ERROR_MESSAGES.PARENT_NOT_CONSTRUCTOR, 'Parent', 'isA', typeof(parent))); }
-		if (instance == null) return true;
+		if (instance == null) return false;
 		return isAssignableFrom(instance.constructor, parent);
 	}
 

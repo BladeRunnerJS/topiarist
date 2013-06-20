@@ -27,8 +27,8 @@ describe("topiary.isA", function() {
 		}).toThrow(err.PARENT_NOT_CONSTRUCTOR('Parent', 'isA', 'number'));
 	});
 
-	it('returns true for a null instance.', function() {
-		expect( topiary.isA(null, ChildClass)).toBe( true );
+	it('returns false for a null instance.', function() {
+		expect( topiary.isA(null, ChildClass)).toBe( false );
 	});
 
 	it('returns true for an instance and its constructor.', function() {
