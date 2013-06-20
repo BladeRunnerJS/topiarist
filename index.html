@@ -35,6 +35,48 @@
 		You can see the specification <a href="specs">here</a>, or the git repository <a href="https://github.com/caplin/topiary">here</a>.
 	</p>
 
+	<p>
+		This library provides:
+		<ul>
+		<li>
+			<code>topiary.extend(subclass, superclass)</code> which implements classical single inheritance by setting up the prototype chain.
+		</li>
+		<li>
+			<code>topiary.implement(class, interface)</code> which declares that a class implements an interface and throws an exception if it does not.
+		</li>
+		<li>
+			<code>topiary.inherit(class, parent)</code> which provides multiple inheritance by copying functionality from the parent to the class.
+		</li>
+		<li>
+			<code>topiary.mixin(class, mixin)</code> which provides mixin inheritance, sandboxing mixin methods that are copied onto the class.
+		</li>
+		<li>
+			<code>topiary.isA(instance, parent)</code> which returns true if the instance is of a type which has been declared to be descended from the parent, e.g. because it's extended or implemented or mixed-in.
+		</li>
+		<li>
+			<code>topiary.isAssignableFrom(class, parent)</code> which returns true if the class has been declared to be descended from the parent, e.g. through extension, implementation, etc.
+		</li>
+		<li>
+			<code>topiary.fulfills(instance, interface)</code> which returns true if the instance supports everything on the interface.
+		</li>
+		<li>
+			<code>topiary.classFulfills(class, interface)</code> which returns true if instances of the class will be created supporting everything on the interface.
+		</li>
+		</ul>
+		Please see the specifications and code documentation for more details.
+	</p>
+	<p>
+		The following convenience methods are also provided:
+		<ul>
+		<li>
+			<code>topiary.install()</code> which copies the appropriate methods onto the Function and Object prototype, renaming them where appropriate.  This lets you do things like <code>Subclass.extends(Superclass)</code>
+		</li>
+		<li>
+			<code>topiary.export()</code> which copies the appropriate methods onto the global object so they can be accessed directly.
+		</li>
+		</ul>
+	</p>
+
 	<h2>A Note on implementation</h2>
 	<p>
 		This library makes liberal use of nonenumerable attributes and Object.getPrototypeOf.
