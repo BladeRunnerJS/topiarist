@@ -13,14 +13,14 @@ describe("topiary.implement", function() {
 		Class = 23;
 		expect(function() {
 			topiary.implement(Class, Interface);
-		}).toThrow(err.CLASS_NOT_CONSTRUCTOR("number", 'implement'));
+		}).toThrow(err.NOT_CONSTRUCTOR("Class", "implement", "number"));
 	});
 
 	it("throws an exception if the interface is not a function.", function() {
 		Interface = 23;
 		expect(function() {
 			topiary.implement(Class, Interface);
-		}).toThrow(err.PARENT_NOT_CONSTRUCTOR('Protocol', 'implement', "number"));
+		}).toThrow(err.NOT_CONSTRUCTOR('Protocol', 'implement', "number"));
 	});
 
 	it("throws an exception if the class doesn't implement all the methods specified by the interface.", function() {

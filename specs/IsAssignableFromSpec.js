@@ -22,13 +22,13 @@ describe("topiary.isAssignableFrom", function() {
 	it('throws an error if the class is not a constructor.', function() {
 		expect( function() {
 			topiary.isAssignableFrom(34, ParentClass);
-		}).toThrow(err.CLASS_NOT_CONSTRUCTOR('number', 'isAssignableFrom'));
+		}).toThrow(err.NOT_CONSTRUCTOR('Class', 'isAssignableFrom', 'number'));
 	});
 
 	it('throws an error if the potential assignee is not a constructor.', function() {
 		expect( function() {
 			topiary.isAssignableFrom(ChildClass, 34);
-		}).toThrow(err.PARENT_NOT_CONSTRUCTOR('Parent', 'isAssignableFrom', 'number'));
+		}).toThrow(err.NOT_CONSTRUCTOR('Parent', 'isAssignableFrom', 'number'));
 	});
 
 	it('returns true for a class and itself.', function() {

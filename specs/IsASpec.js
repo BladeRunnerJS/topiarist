@@ -24,7 +24,7 @@ describe("topiary.isA", function() {
 	it('throws an error if the potential assignee is not a constructor.', function() {
 		expect( function() {
 			topiary.isA(instance, 34);
-		}).toThrow(err.PARENT_NOT_CONSTRUCTOR('Parent', 'isA', 'number'));
+		}).toThrow(err.NOT_CONSTRUCTOR('Parent', 'isA', 'number'));
 	});
 
 	it('returns false for a null instance.', function() {

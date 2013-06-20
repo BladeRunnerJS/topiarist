@@ -3,6 +3,23 @@
 	<title>Topiary</title>
 </head>
 <body>
-	<p>You can see the specification <a href="specs">here</a>, or the git repository <a href="https://github.com/caplin/topiary">here</a>.</p>
+	<h1>Topiary</h1>
+	<p>
+		Topiary provides tree and shape-based type verification for JavaScript.
+	</p>
+
+	<h2>Details</h2>
+	<p>
+		You can see the specification <a href="specs">here</a>, or the git repository <a href="https://github.com/caplin/topiary">here</a>.
+	</p>
+
+	<h2>A Note on implementation</h2>
+	<p>
+		This library makes liberal use of nonenumerable attributes and Object.getPrototypeOf.
+		It is therefore suitable only for ecmascript 5 engines.  It will work in ecmascript 6
+		engines but there would be a much nicer implementation in that case, using Map and
+		private symbols.
+	</p>
+
 </body>
 </html>
