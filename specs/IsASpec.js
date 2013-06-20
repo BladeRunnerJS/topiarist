@@ -1,11 +1,12 @@
 /* global describe, beforeEach, it, expect, topiary, err */
 describe("topiary.isA", function() {
-	var instance, ChildClass, ParentClass, InterfaceClass, MixinClass, OtherClass, ParentsInterface, ParentsMixin;
+	var instance, ChildClass, ParentClass, InterfaceClass, MixinClass, OtherClass, ParentsInterface, ParentsMixin, ObjMixin;
 
 	beforeEach(function() {
 		InterfaceClass = function InterfaceClass() {};
 		MixinClass = function MixinClass() {};
 		OtherClass = function OtherClass() {};
+		ObjMixin = {};
 
 		ParentsInterface = function ParentsInterface() {};
 		ParentsMixin = function ParentsMixin() {};
@@ -16,6 +17,7 @@ describe("topiary.isA", function() {
 		ChildClass = function ChildClass() {};
 		topiary.extend(ChildClass, ParentClass);
 		topiary.mixin(ChildClass, MixinClass);
+		topiary.mixin(ChildClass, ObjMixin);
 		topiary.implement(ChildClass, InterfaceClass);
 
 		instance = new ChildClass();
@@ -57,5 +59,9 @@ describe("topiary.isA", function() {
 
 	it('returns false for a instance and an unrelated other class, even if that class has no different properties.', function() {
 		expect( topiary.isA(instance, OtherClass)).toBe( false );
+	});
+
+	it('returns true for an instance and a mixin that was defined without a constructor.', function() {
+		expect( topiary.isA(instance, ObjMixin)).toBe( true );
 	});
 });

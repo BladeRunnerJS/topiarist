@@ -18,7 +18,7 @@ describe("topiary.inherit", function() {
 	it("throws an error if the inherited parent is null.", function() {
 		expect( function() {
 			topiary.inherit(Class, null);
-		}).toThrow(err.NULL('Parent', 'inherit'));
+		}).toThrow(err.WRONG_TYPE('Parent', 'inherit', 'non-null object or function', 'null'));
 	});
 
 	it("copies inherited functionality across to the class.", function() {

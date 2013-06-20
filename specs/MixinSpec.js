@@ -16,7 +16,7 @@ describe("topiary.mixin", function() {
 	it("throws an error if the mixin is null.", function() {
 		expect( function() {
 			topiary.mixin(Class, null);
-		}).toThrow(err.NULL('Mix', 'mixin'));
+		}).toThrow(err.WRONG_TYPE('Mix', 'mixin', 'non-null object or function', 'null'));
 	});
 
 	it("copies mixin functionality across to the class.", function() {
@@ -120,5 +120,20 @@ describe("topiary.mixin", function() {
 
 		var instance = new Class();
 		expect(typeof instance.mixinFunc).toBe('function');
+	});
+
+	it("can mix in functionality from mixins without constructor functions.", function() {
+		var mixinFuncRan = false;
+
+		topiary.mixin(Class, {
+			mixinFunc: function() {
+				mixinFuncRan = true;
+			}
+		});
+
+		var instance = new Class();
+		instance.mixinFunc();
+
+		expect(mixinFuncRan).toBe(true);
 	});
 });
