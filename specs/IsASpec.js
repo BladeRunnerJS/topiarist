@@ -55,7 +55,7 @@ describe("topiary.isA", function() {
 		expect( topiary.isA(instance, ParentsMixin)).toBe( true );
 	});
 
-	it('returns false for a instance and an unrelated other class.', function() {
+	it('returns false for a instance and an unrelated other class, even if that class has no different properties.', function() {
 		expect( topiary.isA(instance, OtherClass)).toBe( false );
 	});
 });

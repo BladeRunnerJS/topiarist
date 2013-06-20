@@ -7,21 +7,21 @@ describe("topiary.extend", function() {
 		ParentClass = function ParentClass(){};
 	});
 
-	it("throws an exception if the child class is not a function.", function() {
+	it("throws an error if the child class is not a function.", function() {
 		ChildClass = 23;
 		expect(function() {
 			topiary.extend(ChildClass, ParentClass);
 		}).toThrow(err.SUBCLASS_NOT_CONSTRUCTOR());
 	});
 
-	it("throws an exception if the parent class is not a function.", function() {
+	it("throws an error if the parent class is not a function.", function() {
 		ParentClass = 23;
 		expect(function() {
 			topiary.extend(ChildClass, ParentClass);
 		}).toThrow(err.SUPERCLASS_NOT_CONSTRUCTOR('ChildClass'));
 	});
 
-	it("throws an exception if the child class already has something on its prototype.", function() {
+	it("throws an error if the child class already has something on its prototype.", function() {
 		ChildClass.prototype.someThing = 23;
 		expect(function() {
 			topiary.extend(ChildClass, ParentClass);

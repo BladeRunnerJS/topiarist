@@ -9,27 +9,27 @@ describe("topiary.implement", function() {
 		Interface.prototype.anotherInterfaceMethod = function() {};
 	});
 
-	it("throws an exception if the class is not a function.", function() {
+	it("throws an error if the class is not a function.", function() {
 		Class = 23;
 		expect(function() {
 			topiary.implement(Class, Interface);
 		}).toThrow(err.NOT_CONSTRUCTOR("Class", "implement", "number"));
 	});
 
-	it("throws an exception if the interface is not a function.", function() {
+	it("throws an error if the interface is not a function.", function() {
 		Interface = 23;
 		expect(function() {
 			topiary.implement(Class, Interface);
 		}).toThrow(err.NOT_CONSTRUCTOR('Protocol', 'implement', "number"));
 	});
 
-	it("throws an exception if the class doesn't implement all the methods specified by the interface.", function() {
+	it("throws an error if the class doesn't implement all the methods specified by the interface.", function() {
 		expect(function() {
 			topiary.implement(Class, Interface);
 		}).toThrow( err.DOES_NOT_IMPLEMENT('Class', ['interfaceMethod', 'anotherInterfaceMethod'].join("', '"), 'Interface') );
 	});
 
-	it("does not throw an exception if the class implements all the methods specified by the interface.", function() {
+	it("does not throw an error if the class implements all the methods specified by the interface.", function() {
 		Class.prototype.interfaceMethod = function() {};
 		Class.prototype.anotherInterfaceMethod = function() {};
 
@@ -37,7 +37,7 @@ describe("topiary.implement", function() {
 		expect(true).toBe(true);
 	});
 
-	it("does not throw an exception if the class inherits (using topiary.extend) methods required by the interface.", function() {
+	it("does not throw an error if the class inherits (using topiary.extend) methods required by the interface.", function() {
 		Class.prototype.interfaceMethod = function() {};
 		Class.prototype.anotherInterfaceMethod = function() {};
 
