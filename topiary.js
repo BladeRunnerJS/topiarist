@@ -1,4 +1,8 @@
-;(function() {
+/**
+ * @namespace
+ * @name topiary
+ */;
+(function() {
 	"use strict";
 
 	var ERROR_MESSAGES = {
