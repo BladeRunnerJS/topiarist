@@ -1,5 +1,8 @@
 /* global describe, beforeEach, it, expect, topiary, err */
 describe("topiary.fulfills", function() {
+	if (typeof topiary === 'undefined') topiary = require('../lib/topiary.js');
+	var err = topiary._err;
+
 	var Class, Interface, instance;
 
 	beforeEach(function() {
@@ -44,7 +47,7 @@ describe("topiary.fulfills", function() {
 		Interface.prototype.randomThing = function() {};
 		Interface.prototype.otherThing = function() {};
 
-		function Parent() {};
+		function Parent() {}
 		Parent.prototype.randomThing = function() {};
 		Parent.prototype.otherThing = function() {};
 		Parent.prototype.nonRelevantThing = function() {};

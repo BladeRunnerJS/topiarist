@@ -1,5 +1,8 @@
 /* global describe, beforeEach, it, expect, topiary, err */
 describe("topiary.isAssignableFrom", function() {
+	if (typeof topiary === 'undefined') topiary = require('../lib/topiary.js');
+	var err = topiary._err;
+
 	var ChildClass, ParentClass, InterfaceClass, MixinClass, OtherClass, ParentsInterface, ParentsMixin;
 
 	beforeEach(function() {

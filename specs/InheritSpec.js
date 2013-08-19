@@ -1,5 +1,8 @@
 /* global describe, beforeEach, it, expect, topiary, err */
 describe("topiary.inherit", function() {
+	if (typeof topiary === 'undefined') topiary = require('../lib/topiary.js');
+	var err = topiary._err;
+
 	var Class, Parent, MultiParent;
 
 	beforeEach(function() {
@@ -71,10 +74,10 @@ describe("topiary.inherit", function() {
 	});
 
 	it("copies functionality from an inherited classes parents.", function() {
-		function MultiOverMixin() {};
+		function MultiOverMixin() {}
 		MultiOverMixin.prototype.mixedIn = function() {};
 
-		function MultiOverParent() {};
+		function MultiOverParent() {}
 		MultiOverParent.prototype.uber = function() {};
 		topiary.extend(MultiParent, MultiOverParent);
 		topiary.mixin(MultiParent, MultiOverMixin);
@@ -88,10 +91,10 @@ describe("topiary.inherit", function() {
 	});
 
 	it("does not throw an error if we attempt to inherit something that has already been inherited higher up the tree, even if that has then been modified.", function() {
-		function MultiOverMixin() {};
+		function MultiOverMixin() {}
 		MultiOverMixin.prototype.mixedIn = function() {};
 
-		function MultiOverParent() {};
+		function MultiOverParent() {}
 		MultiOverParent.prototype.uber = function() {};
 		topiary.extend(MultiParent, MultiOverParent);
 		topiary.mixin(MultiParent, MultiOverMixin);

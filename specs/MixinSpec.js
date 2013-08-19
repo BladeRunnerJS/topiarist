@@ -1,5 +1,8 @@
 /* global describe, beforeEach, it, expect, topiary, err */
 describe("topiary.mixin", function() {
+	if (typeof topiary === 'undefined') topiary = require('../lib/topiary.js');
+	var err = topiary._err;
+
 	var Class, Mixin;
 
 	beforeEach(function() {
@@ -35,7 +38,7 @@ describe("topiary.mixin", function() {
 	it("ensures that mixin functionality cannot affect instance state.", function() {
 		Mixin.prototype.mixinFunc = function() {
 			this.state = "modified by mixin";
-		}
+		};
 		topiary.mixin(Class, Mixin);
 
 		var instance = new Class();
@@ -59,13 +62,29 @@ describe("topiary.mixin", function() {
 		expect(instance.getRan()).toBe(true);
 	});
 
+	it("ensures that one mixin method can call another.", function() {
+		Mixin.prototype.mixinFunc = function() {
+			this.getRan();
+			this.ran = true;
+		};
+		Mixin.prototype.getRan = function() {
+			return this.ran;
+		};
+		topiary.mixin(Class, Mixin);
+
+		var instance = new Class();
+		instance.mixinFunc();
+
+		expect(instance.getRan()).toBe(true);
+	});
+
 	it("ensures that functionality from two different mixins do not share state.", function() {
-		function FirstMixin() {};
+		function FirstMixin() {}
 		FirstMixin.prototype.increment = function() {
 			if (this.counter == null) this.counter = 0;
 			return this.counter++;
 		};
-		function SecondMixin() {};
+		function SecondMixin() {}
 		SecondMixin.prototype.otherIncrement = function() {
 			if (this.counter == null) this.counter = 0;
 			return this.counter++;
@@ -111,7 +130,7 @@ describe("topiary.mixin", function() {
 	});
 
 	it("does not throw an error if we are mixing in functionality that has already been mixed in.", function() {
-		function Parent() {};
+		function Parent() {}
 		Mixin.prototype.mixinFunc = function() {};
 		topiary.mixin(Parent, Mixin);
 		topiary.extend(Class, Parent);

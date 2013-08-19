@@ -11,36 +11,32 @@
 
 	topiary.install();
 
-	function Emitter() {
-		this.listeners = [];
-	}
-	Emitter.prototype.push = function(a) {this.listeners.push(a);};
-	Emitter.prototype.get = function() {return this.listeners;};
+	function Furry() {}
+	Furry.prototype.stroke = function() {};
 
-	function Bob() {
-		this.listeners = 'boom!';
-	}
-	Bob.sandboxMixin(Emitter);
-	Bob.prototype.thingy = function() {
-		return this.listeners;
-	};
+	function Animal() {}
+
+	function Mammal() {}
+	Mammal.extends(Animal);
+	Mammal.inherit(Furry);
+
+	function Cat() {}
+	Cat.extends(Mammal);
 
 
+	function Monster() {}
+	Monster.mixin(Furry);
 
-	var x = new Bob();
-	var y = new Bob();
 
-	x.push("hi");
-	x.push("world");
-	y.push("2");
-	y.push("3");
-	y.listeners = 'world';
+	var tabby = new Cat()
+	tabby.isA(Mammal);
 
-	console.log(x.thingy());
-	console.log(x.get());
+	tabby.fulfills({
+		stroke: Function,
+		age: Number
+	});
 
-	console.log(y.thingy());
-	console.log(y.get());
+
 </script>
 
 </body>

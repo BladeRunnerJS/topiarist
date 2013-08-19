@@ -1,5 +1,8 @@
 /* global describe, beforeEach, it, expect, topiary, err */
 describe("topiary.implement", function() {
+	if (typeof topiary === 'undefined') topiary = require('../lib/topiary.js');
+	var err = topiary._err;
+
 	var Class, Interface;
 
 	beforeEach(function() {

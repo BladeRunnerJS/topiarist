@@ -1,5 +1,8 @@
 /* global describe, beforeEach, it, expect, topiary, err */
 describe("topiary.extend", function() {
+	if (typeof topiary === 'undefined') topiary = require('../lib/topiary.js');
+	var err = topiary._err;
+
 	var ChildClass, ParentClass;
 
 	beforeEach(function() {
@@ -45,10 +48,6 @@ describe("topiary.extend", function() {
 
 		it("have .constructor properties pointing at their constructor.", function() {
 			expect( instance.constructor ).toBe( ChildClass );
-		});
-
-		it("have .superclass properties pointing to the prototype of the superclass (allows this.superclass.method and this.superclass.constructor).", function() {
-			expect( instance.superclass ).toBe( ParentClass.prototype );
 		});
 
 		it("have attributes from the parent accessible via the prototype chain.", function() {
