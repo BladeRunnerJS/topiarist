@@ -180,5 +180,20 @@ describe("topiary.inherit", function() {
 		});
 	});
 
+	it('checks multiple-inherited parents when checking compatibility.', function() {
+		function A() {};
+		A.prototype.x = function X1() {};
+
+		function B() {};
+		B.prototype = Object.create(null);
+		topiary.inherit(B, A);
+		B.prototype.x = function X2() {};
+
+		function Target1() {};
+		topiary.inherit(Target1, A);
+		topiary.inherit(Target1, B);
+
+		expect(Target1.prototype.x).toBe(B.prototype.x);
+	});
 
 });
