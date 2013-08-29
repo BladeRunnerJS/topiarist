@@ -28,7 +28,7 @@ describe("topiary.extend", function() {
 		ChildClass.prototype.someThing = 23;
 		expect(function() {
 			topiary.extend(ChildClass, ParentClass);
-		}).toThrow(err.PROTOTYPE_NOT_CLEAN('someThing', 'ChildClass')) ;
+		}).toThrow(err.PROTOTYPE_NOT_CLEAN('ChildClass', 'someThing')) ;
 	});
 
 	it("copies 'static' properties (of the constructor function itself) to the child from the parent class.", function() {

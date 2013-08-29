@@ -110,4 +110,75 @@ describe("topiary.inherit", function() {
 
 		expect(instance.uber).toBe(MultiParent.prototype.uber );
 	});
+
+	describe("supports the a->b->c->target multiple inheritance scenario.", function() {
+
+		function A() {}
+		A.prototype.x = function x1() {};
+
+		function B() {}
+		topiary.extend(B, A);
+		B.prototype.x = function x2() {};
+
+		function C() {}
+		topiary.extend(C, B);
+		C.prototype.x = function x3() {};
+
+		it('gets the latest implementation when they are applied in order.', function() {
+			function Target() {};
+
+			topiary.extend(Target, A);
+			topiary.inherit(Target, B);
+			topiary.inherit(Target, C);
+			expect(Target.prototype.x).toBe(C.prototype.x);
+		});
+
+		it('gets the latest implementation when they are applied out of order.', function() {
+			function Target() {};
+
+			topiary.extend(Target, A);
+			topiary.inherit(Target, C);
+			topiary.inherit(Target, B);
+			expect(Target.prototype.x).toBe(C.prototype.x);
+		});
+
+		it('gets the latest implementation when we inherit from a parent.', function() {
+			function Target() {};
+
+			topiary.extend(Target, B);
+			topiary.inherit(Target, A);
+			topiary.inherit(Target, C);
+			expect(Target.prototype.x).toBe(C.prototype.x);
+		});
+
+		it('throws an error when the inheritance tree is incompatible.', function() {
+			function Incompatible() {};
+			topiary.extend(Incompatible, A);
+			Incompatible.prototype.x = function() {};
+
+			function Target() {};
+
+			topiary.extend(Target, A);
+			topiary.inherit(Target, B);
+			topiary.inherit(Target, C);
+			expect(function() {
+				topiary.inherit(Target, Incompatible);
+			}).toThrow(err.ALREADY_PRESENT('x', 'Incompatible', 'Target'));
+		});
+
+		it('does not throw an error when the inheritance tree doesn\'t clash.', function() {
+			function NotIncompatible() {};
+			topiary.extend(NotIncompatible, A);
+
+			function Target() {};
+
+			topiary.extend(Target, A);
+			topiary.inherit(Target, B);
+			topiary.inherit(Target, C);
+			topiary.inherit(Target, NotIncompatible);
+			expect(Target.prototype.x).toBe(C.prototype.x);
+		});
+	});
+
+
 });
