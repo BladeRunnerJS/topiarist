@@ -6,7 +6,7 @@
 	"main": "./lib/topiary.js",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/caplin/topiary.git"
+		"url": "https://github.com/BladeRunnerJS/topiary.git"
 	},
 	"keywords": [
 		"extend",

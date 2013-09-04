@@ -6,8 +6,8 @@ Topiary provides tree and shape-based type verification for JavaScript.
 Details
 -------
 
-You can see the main page [here](http://caplin.github.io/topiary/), or the git repository [here](https://github.com/caplin/topiary).
-Actual js file is at https://github.com/caplin/topiary/blob/gh-pages/lib/topiary.js.
+You can see the main page [here](http://BladeRunnerJS.github.io/topiary/), or the git repository [here](https://github.com/BladeRunnerJS/topiary).
+Actual js file is at https://github.com/BladeRunnerJS/topiary/blob/gh-pages/lib/topiary.js.
 
 
 A Note on implementation
