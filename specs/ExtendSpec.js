@@ -6,8 +6,15 @@ describe("topiary.extend", function() {
 	var ChildClass, ParentClass;
 
 	beforeEach(function() {
-		ChildClass = function ChildClass(){};
-		ParentClass = function ParentClass(){};
+		// This horrible structure is to avoid a bug in IE8 where the obvious way of writing this
+		// would have created *locals* ChildClass and ParentClass and not modified the values from
+		// the above scope.
+		ChildClass = (function() {
+			return function ChildClass(){};
+		})();
+		ParentClass = (function() {
+			return function ParentClass(){};
+		})();
 	});
 
 	it("throws an error if the child class is not a function.", function() {

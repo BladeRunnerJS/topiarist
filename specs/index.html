@@ -1,19 +1,21 @@
-<!DOCTYPE HTML>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Specification for Topiary functions</title>
 
-	<link rel="shortcut icon" type="image/png" href="lib/jasmine-2.0.0-alpha/jasmine_favicon.png">
-	<link rel="stylesheet" type="text/css" href="lib/jasmine-2.0.0-alpha/jasmine.css">
+	<link rel="shortcut icon" type="image/png" href="jasmine-1.1.0/jasmine_favicon.png">
 
-	<script type="text/javascript" src="lib/jasmine-2.0.0-alpha/jasmine.js"></script>
-	<script type="text/javascript" src="lib/jasmine-2.0.0-alpha/jasmine-html.js"></script>
-	<script type="text/javascript" src="lib/jasmine-2.0.0-alpha/boot.js"></script>
+	<link rel="stylesheet" type="text/css" href="jasmine-1.1.0/jasmine.css">
+	<script type="text/javascript" src="jasmine-1.1.0/jasmine.js"></script>
+	<script type="text/javascript" src="jasmine-1.1.0/jasmine-html.js"></script>
+
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="es3-compatibility/es5-shim.js"></script>
+	<script type="text/javascript" src="es3-compatibility/es5-sham.js"></script>
+	<![endif]-->
 
 	<!-- source files here... -->
-	<script type="text/javascript" src="../lib/shims/es5-shim.js"></script>
-	<script type="text/javascript" src="../lib/shims/es5-sham.js"></script>
 	<script type="text/javascript" src="../lib/topiary.js"></script>
 
 	<!-- test helper files here... -->
@@ -27,7 +29,38 @@
 	<script type="text/javascript" src="ClassFulfillsSpec.js"></script>
 	<script type="text/javascript" src="MixinSpec.js"></script>
 	<script type="text/javascript" src="InheritSpec.js"></script>
+
+	<script type="text/javascript">
+		(function() {
+			var jasmineEnv = jasmine.getEnv();
+			jasmineEnv.updateInterval = 1000;
+
+			var htmlReporter = new jasmine.HtmlReporter();
+
+			jasmineEnv.addReporter(htmlReporter);
+
+			jasmineEnv.specFilter = function(spec) {
+				return htmlReporter.specFilter(spec);
+			};
+
+			var currentWindowOnload = window.onload;
+
+			window.onload = function() {
+				if (currentWindowOnload) {
+					currentWindowOnload();
+				}
+				execJasmine();
+			};
+
+			function execJasmine() {
+				jasmineEnv.execute();
+			}
+
+		})();
+	</script>
+
 </head>
+
 <body>
 </body>
 </html>

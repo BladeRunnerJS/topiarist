@@ -6,18 +6,36 @@ describe("topiary.isA", function() {
 	var instance, ChildClass, ParentClass, InterfaceClass, MixinClass, OtherClass, ParentsInterface, ParentsMixin, ObjMixin;
 
 	beforeEach(function() {
-		InterfaceClass = function InterfaceClass() {};
-		MixinClass = function MixinClass() {};
-		OtherClass = function OtherClass() {};
+		// This horrible structure is to avoid a bug in IE8 where the obvious way of writing this
+		// would have created *locals* ChildClass and ParentClass and not modified the values from
+		// the above scope.
+		InterfaceClass = (function() {
+			return function InterfaceClass() {};
+		})();
+		MixinClass = (function() {
+			return function MixinClass() {};
+		})();
+		OtherClass = (function() {
+			return function OtherClass() {};
+		})();
 		ObjMixin = {};
 
-		ParentsInterface = function ParentsInterface() {};
-		ParentsMixin = function ParentsMixin() {};
-		ParentClass = function ParentClass() {};
+		ParentsInterface = (function() {
+			return function ParentsInterface() {};
+		})();
+		ParentsMixin = (function() {
+			return function ParentsMixin() {};
+		})();
+		ParentClass = (function() {
+			return function ParentClass() {};
+		})();
+
 		topiary.implement(ParentClass, ParentsInterface);
 		topiary.mixin(ParentClass, ParentsMixin);
 
-		ChildClass = function ChildClass() {};
+		ChildClass = (function() {
+			return function ChildClass() {};
+		})();
 		topiary.extend(ChildClass, ParentClass);
 		topiary.mixin(ChildClass, MixinClass);
 		topiary.mixin(ChildClass, ObjMixin);

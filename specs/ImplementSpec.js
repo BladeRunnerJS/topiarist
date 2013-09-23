@@ -6,8 +6,15 @@ describe("topiary.implement", function() {
 	var Class, Interface;
 
 	beforeEach(function() {
-		Class = function Class() {};
-		Interface = function Interface() {};
+		// This horrible structure is to avoid a bug in IE8 where the obvious way of writing this
+		// would have created *locals* ChildClass and ParentClass and not modified the values from
+		// the above scope.
+		Class = (function() {
+			return function Class() {};
+		})();
+		Interface = (function() {
+			return function Interface() {};
+		})();
 		Interface.prototype.interfaceMethod = function() {};
 		Interface.prototype.anotherInterfaceMethod = function() {};
 	});
