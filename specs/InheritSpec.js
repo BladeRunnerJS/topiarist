@@ -185,7 +185,7 @@ describe("topiary.inherit", function() {
 		A.prototype.x = function X1() {};
 
 		function B() {};
-		B.prototype = Object.create(null);
+		B.prototype = {};
 		topiary.inherit(B, A);
 		B.prototype.x = function X2() {};
 
