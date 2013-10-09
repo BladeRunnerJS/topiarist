@@ -1,4 +1,4 @@
 .iml
 .idea
 node_modules/
-sauce_connect.log
+sauce_connect.log*
