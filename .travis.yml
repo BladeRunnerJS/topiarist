@@ -1,14 +1,14 @@
-language: node_js
-node_js:
- - 0.10
-before_script:
- - npm install -g grunt-cli
- - git submodule update --init --recursive
-branches:
- only:
+env: 
+  global: 
+  - secure: MNAXmNZnWKtMD+YNCM2NSZFdb/YFQ8SsK8VWqadYLlUI+KMJFc+NOdTxZEw3oRRbQ1U+rFFD+hSXsNJEnPXAYhtXHrFrUOdFzXnhMhUATxegu5QMGn4bZXKAwynYkxMQ45jdcBaPYd16CSzEcLHYsYjigo0XJYfc7/sdnGvtuIY=
+  - secure: umoYmYvNAKFkzMiiIFFHoT8p4noHoHfiPtS9WjRscEVm6J10Pv0fDfOyZYSK7+nxMZBEZ28Intbaxkjw2wsWK5hjduPCt1Jyh5OF2zo7kxvhsmIhGxYYA993eqU4yMqsBsvE5ra0ezxkYdehWnzaupSTjiRU8V+/GhPsGPcbiG0=
+before_script: 
+- npm install -g grunt-cli
+- git submodule update --init --recursive
+node_js: 
+- 0.1
+branches: 
+  only: 
   - master
   - gh-pages
-env:
- global:
-  - secure: sLxQu0e71/KlGrQMCkR2rF2xZe+43W5SxsLACWwdYLkSer5cd/Qc0r/pNz0K/fw/mGfSiD8QZe120/7aEp9VGg5LRdz9qihOcH3fLJfXS9GDkweTPb/B4Vjwaxc9SACB7PZ7HdrIvF6O/G+61hl3Uq10I4qIehFdGLT/wt9Ypes=
-  - secure: c4t/k9KMaRm3w2YgPil4JsCGZybHx5r0HZqKZ5LMchS2fC1vuEf3lnSoOy8Kwc1BZog2EYjgii9ratgOezxfIivQ4KpybifjncS+qpjZhmZsCfqT+x86wskcOQf5w760O8ixMh/JweoLQ3kF3a9pL6XcQjzPcceCEpC7Jm9fbqY=
+language: node_js
