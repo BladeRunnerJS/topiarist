@@ -1,2 +1,4 @@
-topiary.iml
+.iml
 .idea
+node_modules/
+sauce_connect.log
