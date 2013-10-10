@@ -1,10 +1,10 @@
 ---
 layout: main
 permalink: /index.html
-title: fell logging
+title: topiary
 ---
 
-<script src="lib/topiary.js" type="text/javascript"></script>
+<script type="text/javascript" src="lib/topiary.js"></script>
 
 Topiary
 =======
