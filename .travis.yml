@@ -1,0 +1,14 @@
+env: 
+  global: 
+  - secure: MNAXmNZnWKtMD+YNCM2NSZFdb/YFQ8SsK8VWqadYLlUI+KMJFc+NOdTxZEw3oRRbQ1U+rFFD+hSXsNJEnPXAYhtXHrFrUOdFzXnhMhUATxegu5QMGn4bZXKAwynYkxMQ45jdcBaPYd16CSzEcLHYsYjigo0XJYfc7/sdnGvtuIY=
+  - secure: umoYmYvNAKFkzMiiIFFHoT8p4noHoHfiPtS9WjRscEVm6J10Pv0fDfOyZYSK7+nxMZBEZ28Intbaxkjw2wsWK5hjduPCt1Jyh5OF2zo7kxvhsmIhGxYYA993eqU4yMqsBsvE5ra0ezxkYdehWnzaupSTjiRU8V+/GhPsGPcbiG0=
+before_script: 
+- npm install -g grunt-cli
+- git submodule update --init --recursive
+node_js: 
+- 0.1
+branches: 
+  only: 
+  - master
+  - gh-pages
+language: node_js
