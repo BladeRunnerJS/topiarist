@@ -4,7 +4,8 @@ permalink: /index.html
 title: topiary
 ---
 
-<script type="text/javascript" src="lib/topiary.js"></script>
+<script type="text/javascript" src="lib/topiary.js">
+</script>
 
 Topiary
 =======
