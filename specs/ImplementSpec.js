@@ -39,6 +39,17 @@ describe("topiary.implement", function() {
 		}).toThrow( err.DOES_NOT_IMPLEMENT('Class', ['interfaceMethod', 'anotherInterfaceMethod'].join("', '"), 'Interface') );
 	});
 
+	it("throws an error if the class doesn't implement all the 'class' methods specified by the interface.", function() {
+		Class.prototype.interfaceMethod = function() {};
+		Class.prototype.anotherInterfaceMethod = function() {};
+
+		Interface.staticMethod = function() {};
+
+		expect(function() {
+			topiary.implement(Class, Interface);
+		}).toThrow(err.DOES_NOT_IMPLEMENT('Class', 'staticMethod (class method)', 'Interface'));
+	});
+
 	it("does not throw an error if the class implements all the methods specified by the interface.", function() {
 		Class.prototype.interfaceMethod = function() {};
 		Class.prototype.anotherInterfaceMethod = function() {};

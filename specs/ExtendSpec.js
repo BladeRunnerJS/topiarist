@@ -72,4 +72,36 @@ describe("topiary.extend", function() {
 		});
 	});
 
+	it('allows extra properties to be specified which are added to the child prototype', function() {
+		function extraFunction() {};
+		topiary.extend(ChildClass, ParentClass, {
+			"anExtraProperty": extraFunction
+		});
+
+		var instance = new ChildClass();
+
+		expect( instance.anExtraProperty ).toBe(extraFunction);
+	});
+
+	it('allows the constructor to be specified in extra properties.', function() {
+		function extraFunction() {};
+		var MyClass = topiary.extend(null, ParentClass, {
+			"constructor": ChildClass,
+			"anExtraProperty": extraFunction
+		});
+
+		var instance = new MyClass();
+
+		expect(instance instanceof ChildClass).toBe(true);
+		expect( instance.anExtraProperty ).toBe(extraFunction);
+	});
+
+	it('throws an exception if the constructor specified in extra properties is different to the provided constructor.', function() {
+		function MyClass() {};
+		expect(function() {
+			topiary.extend(ChildClass, ParentClass, {
+				"constructor": MyClass
+			});
+		}).toThrow(err.TWO_CONSTRUCTORS("ChildClass"));
+	});
 });
