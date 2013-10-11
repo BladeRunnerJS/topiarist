@@ -12,6 +12,8 @@ Topiary
 
 Topiary provides tree and shape-based type verification for JavaScript.
 
+[![Build Status](https://travis-ci.org/bladerunnerjs/topiary.png)](https://travis-ci.org/bladerunnerjs/topiary)
+
 Details
 -------
 
