@@ -6,7 +6,7 @@ before_script:
 - npm install -g grunt-cli
 - git submodule update --init --recursive
 script:
-- npm saucelabs-test
+- npm run-script saucelabs-test
 node_js: 
 - 0.1
 branches: 
