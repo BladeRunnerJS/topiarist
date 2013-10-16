@@ -24,6 +24,7 @@ module.exports = function(grunt) {
             server: {
                 options: {
                     base: "",
+                    hostname: "",
                     port: 9999
                 }
             }
@@ -48,5 +49,6 @@ module.exports = function(grunt) {
         if (key !== "grunt" && key.indexOf("grunt") === 0) grunt.loadNpmTasks(key);
     }
 
+    grunt.registerTask("serve", ["connect", "watch"]);
     grunt.registerTask("saucelabs-test", ["connect", "saucelabs-jasmine"]);
 };
