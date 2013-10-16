@@ -17,10 +17,6 @@ module.exports = function(grunt) {
         browserName: "internet explorer",
         platform: "VISTA",
         version: "9"
-    }, {
-        browserName: "opera",
-        platform: "Windows 2008",
-        version: "12"
     }];
 
     grunt.initConfig({
@@ -52,6 +48,5 @@ module.exports = function(grunt) {
         if (key !== "grunt" && key.indexOf("grunt") === 0) grunt.loadNpmTasks(key);
     }
 
-    grunt.registerTask("dev", ["connect", "watch"]);
-    grunt.registerTask("test", ["connect", "saucelabs-jasmine"]);
+    grunt.registerTask("saucelabs-test", ["connect", "saucelabs-jasmine"]);
 };
