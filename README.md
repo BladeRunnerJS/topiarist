@@ -54,3 +54,4 @@ The following convenience methods are also provided:
 
 * `topiary.install()` which copies the appropriate methods onto the Function and Object prototype, renaming them where appropriate.  This lets you do things like `Subclass.extends(Superclass)`
 * `topiary.export()` which copies the appropriate methods onto the global object so they can be accessed directly.
+
