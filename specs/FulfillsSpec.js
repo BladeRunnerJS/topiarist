@@ -88,4 +88,15 @@ describe("topiary.fulfills", function() {
 		expect( topiary.fulfills(instance, {randomThing: String, otherThing: Number})).toBe(true);
 	});
 
+	it("works with type indicators even if the thing being checked is a function.", function() {
+		instance.randomThing = function() {};
+		expect( topiary.fulfills(instance, {randomThing: Number})).toBe(false);
+	});
+
+	it("needs all types to be true, not just one when used with type indicators.", function() {
+		instance.randomThing = 30;
+		instance.otherThing = 20;
+		expect( topiary.fulfills(instance, {randomThing: Number, otherThing: String})).toBe(false);
+	});
+
 });
