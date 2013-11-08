@@ -23,7 +23,7 @@
 		"grunt-contrib-watch": "~0.2.0"
 	},
 	"scripts": {
-		"test": "jasmine-node --verbose specs",
+		"test": "jasmine-node --verbose spec",
 		"saucelabs-test": "grunt saucelabs-test"
 	},
 	"bundledDependencies": [
