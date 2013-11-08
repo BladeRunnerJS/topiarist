@@ -1,26 +1,26 @@
-/* global describe, beforeEach, it, expect, topiary, err */
-describe("topiary.inherit", function() {
-	if (typeof topiary === 'undefined') topiary = require('../lib/topiary.js');
-	var err = topiary._err;
+/* global describe, beforeEach, it, expect, topiarist, err */
+describe("topiarist.inherit", function() {
+	if (typeof topiarist === 'undefined') topiarist = require('../lib/topiarist.js');
+	var err = topiarist._err;
 
 	var Class, Parent, MultiParent;
 
 	beforeEach(function() {
 		Class = function() {};
 		Parent = function() {};
-		topiary.extend(Class, Parent);
+		topiarist.extend(Class, Parent);
 		MultiParent = function() {};
 	});
 
 	it("throws an error if the target is not a constructor.", function() {
 		expect( function() {
-			topiary.inherit(23, MultiParent);
+			topiarist.inherit(23, MultiParent);
 		}).toThrow(err.NOT_CONSTRUCTOR('Target', 'inherit', 'number'));
 	});
 
 	it("throws an error if the inherited parent is null.", function() {
 		expect( function() {
-			topiary.inherit(Class, null);
+			topiarist.inherit(Class, null);
 		}).toThrow(err.WRONG_TYPE('Parent', 'inherit', 'non-null object or function', 'null'));
 	});
 
@@ -29,7 +29,7 @@ describe("topiary.inherit", function() {
 		MultiParent.prototype.inheritedFunc = function() {
 			inheritedFuncRan = true;
 		};
-		topiary.inherit(Class, MultiParent);
+		topiarist.inherit(Class, MultiParent);
 
 		var instance = new Class();
 		instance.inheritedFunc();
@@ -41,7 +41,7 @@ describe("topiary.inherit", function() {
 		MultiParent.prototype.inheritedFunc = function() {
 			this.state = "modified by inherited function";
 		};
-		topiary.inherit(Class, MultiParent);
+		topiarist.inherit(Class, MultiParent);
 
 		var instance = new Class();
 		instance.inheritedFunc();
@@ -56,7 +56,7 @@ describe("topiary.inherit", function() {
 		Class.prototype.clashingThingy = function() {};
 
 		expect(function() {
-			topiary.inherit(Class, MultiParent);
+			topiarist.inherit(Class, MultiParent);
 		}).toThrow(err.ALREADY_PRESENT('clashingThingy', 'parent', 'target'));
 	});
 
@@ -67,7 +67,7 @@ describe("topiary.inherit", function() {
 		Class.prototype.clashingThingy = function() {};
 
 		try {
-			topiary.inherit(Class, MultiParent);
+			topiarist.inherit(Class, MultiParent);
 		} catch (e) {}
 
 		expect(Class.prototype.thingy).toBeUndefined();
@@ -79,10 +79,10 @@ describe("topiary.inherit", function() {
 
 		function MultiOverParent() {}
 		MultiOverParent.prototype.uber = function() {};
-		topiary.extend(MultiParent, MultiOverParent);
-		topiary.mixin(MultiParent, MultiOverMixin);
+		topiarist.extend(MultiParent, MultiOverParent);
+		topiarist.mixin(MultiParent, MultiOverMixin);
 
-		topiary.inherit(Class, MultiParent);
+		topiarist.inherit(Class, MultiParent);
 
 		var instance = new Class();
 
@@ -96,15 +96,15 @@ describe("topiary.inherit", function() {
 
 		function MultiOverParent() {}
 		MultiOverParent.prototype.uber = function() {};
-		topiary.extend(MultiParent, MultiOverParent);
-		topiary.mixin(MultiParent, MultiOverMixin);
+		topiarist.extend(MultiParent, MultiOverParent);
+		topiarist.mixin(MultiParent, MultiOverMixin);
 
 		// override uber
 		MultiParent.prototype.uber = function() {};
 
-		topiary.inherit(Class, MultiParent);
+		topiarist.inherit(Class, MultiParent);
 
-		topiary.inherit(Class, MultiOverParent);
+		topiarist.inherit(Class, MultiOverParent);
 
 		var instance = new Class();
 
@@ -117,65 +117,65 @@ describe("topiary.inherit", function() {
 		A.prototype.x = function x1() {};
 
 		function B() {}
-		topiary.extend(B, A);
+		topiarist.extend(B, A);
 		B.prototype.x = function x2() {};
 
 		function C() {}
-		topiary.extend(C, B);
+		topiarist.extend(C, B);
 		C.prototype.x = function x3() {};
 
 		it('gets the latest implementation when they are applied in order.', function() {
 			function Target() {};
 
-			topiary.extend(Target, A);
-			topiary.inherit(Target, B);
-			topiary.inherit(Target, C);
+			topiarist.extend(Target, A);
+			topiarist.inherit(Target, B);
+			topiarist.inherit(Target, C);
 			expect(Target.prototype.x).toBe(C.prototype.x);
 		});
 
 		it('gets the latest implementation when they are applied out of order.', function() {
 			function Target() {};
 
-			topiary.extend(Target, A);
-			topiary.inherit(Target, C);
-			topiary.inherit(Target, B);
+			topiarist.extend(Target, A);
+			topiarist.inherit(Target, C);
+			topiarist.inherit(Target, B);
 			expect(Target.prototype.x).toBe(C.prototype.x);
 		});
 
 		it('gets the latest implementation when we inherit from a parent.', function() {
 			function Target() {};
 
-			topiary.extend(Target, B);
-			topiary.inherit(Target, A);
-			topiary.inherit(Target, C);
+			topiarist.extend(Target, B);
+			topiarist.inherit(Target, A);
+			topiarist.inherit(Target, C);
 			expect(Target.prototype.x).toBe(C.prototype.x);
 		});
 
 		it('throws an error when the inheritance tree is incompatible.', function() {
 			function Incompatible() {};
-			topiary.extend(Incompatible, A);
+			topiarist.extend(Incompatible, A);
 			Incompatible.prototype.x = function() {};
 
 			function Target() {};
 
-			topiary.extend(Target, A);
-			topiary.inherit(Target, B);
-			topiary.inherit(Target, C);
+			topiarist.extend(Target, A);
+			topiarist.inherit(Target, B);
+			topiarist.inherit(Target, C);
 			expect(function() {
-				topiary.inherit(Target, Incompatible);
+				topiarist.inherit(Target, Incompatible);
 			}).toThrow(err.ALREADY_PRESENT('x', 'Incompatible', 'Target'));
 		});
 
 		it('does not throw an error when the inheritance tree doesn\'t clash.', function() {
 			function NotIncompatible() {};
-			topiary.extend(NotIncompatible, A);
+			topiarist.extend(NotIncompatible, A);
 
 			function Target() {};
 
-			topiary.extend(Target, A);
-			topiary.inherit(Target, B);
-			topiary.inherit(Target, C);
-			topiary.inherit(Target, NotIncompatible);
+			topiarist.extend(Target, A);
+			topiarist.inherit(Target, B);
+			topiarist.inherit(Target, C);
+			topiarist.inherit(Target, NotIncompatible);
 			expect(Target.prototype.x).toBe(C.prototype.x);
 		});
 	});
@@ -186,12 +186,12 @@ describe("topiary.inherit", function() {
 
 		function B() {};
 		B.prototype = {};
-		topiary.inherit(B, A);
+		topiarist.inherit(B, A);
 		B.prototype.x = function X2() {};
 
 		function Target1() {};
-		topiary.inherit(Target1, A);
-		topiary.inherit(Target1, B);
+		topiarist.inherit(Target1, A);
+		topiarist.inherit(Target1, B);
 
 		expect(Target1.prototype.x).toBe(B.prototype.x);
 	});

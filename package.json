@@ -1,12 +1,12 @@
 {
-	"name": "topiary",
-	"version": "0.0.1",
+	"name": "topiarist",
+	"version": "0.0.3",
 	"author": "kybernetikos <kybernetikos@gmail.com>",
 	"description": "a micro library for extension, mixin and interfaces.",
-	"main": "./lib/topiary.js",
+	"main": "./lib/topiarist.js",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/BladeRunnerJS/topiary.git"
+		"url": "https://github.com/BladeRunnerJS/topiarist.git"
 	},
 	"keywords": [
 		"extend",

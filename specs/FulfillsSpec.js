@@ -1,7 +1,7 @@
-/* global describe, beforeEach, it, expect, topiary, err */
-describe("topiary.fulfills", function() {
-	if (typeof topiary === 'undefined') topiary = require('../lib/topiary.js');
-	var err = topiary._err;
+/* global describe, beforeEach, it, expect, topiarist, err */
+describe("topiarist.fulfills", function() {
+	if (typeof topiarist === 'undefined') topiarist = require('../lib/topiarist.js');
+	var err = topiarist._err;
 
 	var Class, Interface, instance;
 
@@ -13,13 +13,13 @@ describe("topiary.fulfills", function() {
 
 	it("throws an error if the object is null.", function() {
 		expect( function() {
-			topiary.fulfills(null, Interface);
+			topiarist.fulfills(null, Interface);
 		}).toThrow(err.NULL('Object', 'fulfills'));
 	});
 
 	it("throws an error if the protocol is null.", function() {
 		expect( function() {
-			topiary.fulfills(instance, null);
+			topiarist.fulfills(instance, null);
 		}).toThrow(err.NULL('Protocol', 'fulfills'));
 	});
 
@@ -31,7 +31,7 @@ describe("topiary.fulfills", function() {
 		instance.otherThing = function() {};
 		instance.nonRelevantThing = function() {};
 
-		expect( topiary.fulfills(instance, Interface)).toBe(true);
+		expect( topiarist.fulfills(instance, Interface)).toBe(true);
 	});
 
 	it("returns false if not all functions on an Interface prototype are on the instance.", function() {
@@ -40,7 +40,7 @@ describe("topiary.fulfills", function() {
 
 		instance.randomThing = function() {};
 
-		expect( topiary.fulfills(instance, Interface)).toBe(false);
+		expect( topiarist.fulfills(instance, Interface)).toBe(false);
 	});
 
 	it("returns true if all functions on an Interface prototype are inherited by the instance.", function() {
@@ -52,11 +52,11 @@ describe("topiary.fulfills", function() {
 		Parent.prototype.otherThing = function() {};
 		Parent.prototype.nonRelevantThing = function() {};
 
-		topiary.extend(Class, Parent);
+		topiarist.extend(Class, Parent);
 
 		instance = new Class();
 
-		expect( topiary.fulfills(instance, Interface)).toBe(true);
+		expect( topiarist.fulfills(instance, Interface)).toBe(true);
 	});
 
 	it("returns false if the protocol has properties of a different type to the instance.", function() {
@@ -66,7 +66,7 @@ describe("topiary.fulfills", function() {
 		instance.randomThing = function() {};
 		instance.otherThing = "string";
 
-		expect( topiary.fulfills(instance, Interface)).toBe(false);
+		expect( topiarist.fulfills(instance, Interface)).toBe(false);
 	});
 
 	it("returns true if the protocol has properties of the same nonfunction type to the instance.", function() {
@@ -77,7 +77,7 @@ describe("topiary.fulfills", function() {
 		instance.otherThing = 40;
 		instance.nonRelevantThing = 90;
 
-		expect( topiary.fulfills(instance, Interface)).toBe(true);
+		expect( topiarist.fulfills(instance, Interface)).toBe(true);
 	});
 
 	it("returns true if an adhoc protocol has properties indicating the same type as the properties on the instance.", function() {
@@ -85,18 +85,18 @@ describe("topiary.fulfills", function() {
 		instance.otherThing = 40;
 		instance.nonRelevantThing = 90;
 
-		expect( topiary.fulfills(instance, {randomThing: String, otherThing: Number})).toBe(true);
+		expect( topiarist.fulfills(instance, {randomThing: String, otherThing: Number})).toBe(true);
 	});
 
 	it("works with type indicators even if the thing being checked is a function.", function() {
 		instance.randomThing = function() {};
-		expect( topiary.fulfills(instance, {randomThing: Number})).toBe(false);
+		expect( topiarist.fulfills(instance, {randomThing: Number})).toBe(false);
 	});
 
 	it("needs all types to be true, not just one when used with type indicators.", function() {
 		instance.randomThing = 30;
 		instance.otherThing = 20;
-		expect( topiary.fulfills(instance, {randomThing: Number, otherThing: String})).toBe(false);
+		expect( topiarist.fulfills(instance, {randomThing: Number, otherThing: String})).toBe(false);
 	});
 
 });

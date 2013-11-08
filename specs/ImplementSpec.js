@@ -1,7 +1,7 @@
-/* global describe, beforeEach, it, expect, topiary, err */
-describe("topiary.implement", function() {
-	if (typeof topiary === 'undefined') topiary = require('../lib/topiary.js');
-	var err = topiary._err;
+/* global describe, beforeEach, it, expect, topiarist, err */
+describe("topiarist.implement", function() {
+	if (typeof topiarist === 'undefined') topiarist = require('../lib/topiarist.js');
+	var err = topiarist._err;
 
 	var Class, Interface;
 
@@ -22,20 +22,20 @@ describe("topiary.implement", function() {
 	it("throws an error if the class is not a function.", function() {
 		Class = 23;
 		expect(function() {
-			topiary.implement(Class, Interface);
+			topiarist.implement(Class, Interface);
 		}).toThrow(err.NOT_CONSTRUCTOR("Class", "implement", "number"));
 	});
 
 	it("throws an error if the interface is not a function.", function() {
 		Interface = 23;
 		expect(function() {
-			topiary.implement(Class, Interface);
+			topiarist.implement(Class, Interface);
 		}).toThrow(err.NOT_CONSTRUCTOR('Protocol', 'implement', "number"));
 	});
 
 	it("throws an error if the class doesn't implement all the methods specified by the interface.", function() {
 		expect(function() {
-			topiary.implement(Class, Interface);
+			topiarist.implement(Class, Interface);
 		}).toThrow( err.DOES_NOT_IMPLEMENT('Class', ['interfaceMethod', 'anotherInterfaceMethod'].join("', '"), 'Interface') );
 	});
 
@@ -46,7 +46,7 @@ describe("topiary.implement", function() {
 		Interface.staticMethod = function() {};
 
 		expect(function() {
-			topiary.implement(Class, Interface);
+			topiarist.implement(Class, Interface);
 		}).toThrow(err.DOES_NOT_IMPLEMENT('Class', 'staticMethod (class method)', 'Interface'));
 	});
 
@@ -54,18 +54,18 @@ describe("topiary.implement", function() {
 		Class.prototype.interfaceMethod = function() {};
 		Class.prototype.anotherInterfaceMethod = function() {};
 
-		topiary.implement(Class, Interface);
+		topiarist.implement(Class, Interface);
 		expect(true).toBe(true);
 	});
 
-	it("does not throw an error if the class inherits (using topiary.extend) methods required by the interface.", function() {
+	it("does not throw an error if the class inherits (using topiarist.extend) methods required by the interface.", function() {
 		Class.prototype.interfaceMethod = function() {};
 		Class.prototype.anotherInterfaceMethod = function() {};
 
 		function ChildClass() {}
-		topiary.extend(ChildClass, Class);
+		topiarist.extend(ChildClass, Class);
 
-		topiary.implement(ChildClass, Interface);
+		topiarist.implement(ChildClass, Interface);
 		expect(true).toBe(true);
 	});
 

@@ -1,7 +1,7 @@
-/* global describe, beforeEach, it, expect, topiary, err */
-describe("topiary.extend", function() {
-	if (typeof topiary === 'undefined') topiary = require('../lib/topiary.js');
-	var err = topiary._err;
+/* global describe, beforeEach, it, expect, topiarist, err */
+describe("topiarist.extend", function() {
+	if (typeof topiarist === 'undefined') topiarist = require('../lib/topiarist.js');
+	var err = topiarist._err;
 
 	var ChildClass, ParentClass;
 
@@ -20,27 +20,27 @@ describe("topiary.extend", function() {
 	it("throws an error if the child class is not a function.", function() {
 		ChildClass = 23;
 		expect(function() {
-			topiary.extend(ChildClass, ParentClass);
+			topiarist.extend(ChildClass, ParentClass);
 		}).toThrow(err.SUBCLASS_NOT_CONSTRUCTOR());
 	});
 
 	it("throws an error if the parent class is not a function.", function() {
 		ParentClass = 23;
 		expect(function() {
-			topiary.extend(ChildClass, ParentClass);
+			topiarist.extend(ChildClass, ParentClass);
 		}).toThrow(err.SUPERCLASS_NOT_CONSTRUCTOR('ChildClass'));
 	});
 
 	it("throws an error if the child class already has something on its prototype.", function() {
 		ChildClass.prototype.someThing = 23;
 		expect(function() {
-			topiary.extend(ChildClass, ParentClass);
+			topiarist.extend(ChildClass, ParentClass);
 		}).toThrow(err.PROTOTYPE_NOT_CLEAN('ChildClass', 'someThing')) ;
 	});
 
 	it("copies 'static' properties (of the constructor function itself) to the child from the parent class.", function() {
 		ParentClass.MY_IMPORTANT_NUMBER = 23;
-		topiary.extend(ChildClass, ParentClass);
+		topiarist.extend(ChildClass, ParentClass);
 
 		expect( ChildClass.MY_IMPORTANT_NUMBER ).toBe( 23 );
 	});
@@ -49,7 +49,7 @@ describe("topiary.extend", function() {
 		var instance;
 
 		beforeEach(function() {
-			topiary.extend(ChildClass, ParentClass);
+			topiarist.extend(ChildClass, ParentClass);
 			instance = new ChildClass();
 		});
 
@@ -74,7 +74,7 @@ describe("topiary.extend", function() {
 
 	it('allows extra properties to be specified which are added to the child prototype', function() {
 		function extraFunction() {};
-		topiary.extend(ChildClass, ParentClass, {
+		topiarist.extend(ChildClass, ParentClass, {
 			"anExtraProperty": extraFunction
 		});
 
@@ -85,7 +85,7 @@ describe("topiary.extend", function() {
 
 	it('allows the constructor to be specified in extra properties.', function() {
 		function extraFunction() {};
-		var MyClass = topiary.extend(null, ParentClass, {
+		var MyClass = topiarist.extend(null, ParentClass, {
 			"constructor": ChildClass,
 			"anExtraProperty": extraFunction
 		});
@@ -99,7 +99,7 @@ describe("topiary.extend", function() {
 	it('throws an exception if the constructor specified in extra properties is different to the provided constructor.', function() {
 		function MyClass() {};
 		expect(function() {
-			topiary.extend(ChildClass, ParentClass, {
+			topiarist.extend(ChildClass, ParentClass, {
 				"constructor": MyClass
 			});
 		}).toThrow(err.TWO_CONSTRUCTORS("ChildClass"));

@@ -1,7 +1,7 @@
-/* global describe, beforeEach, it, expect, topiary, err */
-describe("topiary.mixin", function() {
-	if (typeof topiary === 'undefined') topiary = require('../lib/topiary.js');
-	var err = topiary._err;
+/* global describe, beforeEach, it, expect, topiarist, err */
+describe("topiarist.mixin", function() {
+	if (typeof topiarist === 'undefined') topiarist = require('../lib/topiarist.js');
+	var err = topiarist._err;
 
 	var Class, Mixin;
 
@@ -12,13 +12,13 @@ describe("topiary.mixin", function() {
 
 	it("throws an error if the target is not a constructor.", function() {
 		expect( function() {
-			topiary.mixin(23, Mixin);
+			topiarist.mixin(23, Mixin);
 		}).toThrow(err.NOT_CONSTRUCTOR('Target', 'mixin', 'number'));
 	});
 
 	it("throws an error if the mixin is null.", function() {
 		expect( function() {
-			topiary.mixin(Class, null);
+			topiarist.mixin(Class, null);
 		}).toThrow(err.WRONG_TYPE('Mix', 'mixin', 'non-null object or function', 'null'));
 	});
 
@@ -27,7 +27,7 @@ describe("topiary.mixin", function() {
 		Mixin.prototype.mixinFunc = function() {
 			mixinFuncRan = true;
 		};
-		topiary.mixin(Class, Mixin);
+		topiarist.mixin(Class, Mixin);
 
 		var instance = new Class();
 		instance.mixinFunc();
@@ -39,7 +39,7 @@ describe("topiary.mixin", function() {
 		Mixin.prototype.mixinFunc = function() {
 			this.state = "modified by mixin";
 		};
-		topiary.mixin(Class, Mixin);
+		topiarist.mixin(Class, Mixin);
 
 		var instance = new Class();
 		instance.mixinFunc();
@@ -54,7 +54,7 @@ describe("topiary.mixin", function() {
 		Mixin.prototype.getRan = function() {
 			return this.ran;
 		};
-		topiary.mixin(Class, Mixin);
+		topiarist.mixin(Class, Mixin);
 
 		var instance = new Class();
 		instance.mixinFunc();
@@ -70,7 +70,7 @@ describe("topiary.mixin", function() {
 		Mixin.prototype.getRan = function() {
 			return this.ran;
 		};
-		topiary.mixin(Class, Mixin);
+		topiarist.mixin(Class, Mixin);
 
 		var instance = new Class();
 		instance.mixinFunc();
@@ -90,8 +90,8 @@ describe("topiary.mixin", function() {
 			return this.counter++;
 		};
 
-		topiary.mixin(Class, FirstMixin);
-		topiary.mixin(Class, SecondMixin);
+		topiarist.mixin(Class, FirstMixin);
+		topiarist.mixin(Class, SecondMixin);
 
 		var instance = new Class();
 
@@ -112,7 +112,7 @@ describe("topiary.mixin", function() {
 		Class.prototype.clashingThingy = function() {};
 
 		expect(function() {
-			topiary.mixin(Class, Mixin);
+			topiarist.mixin(Class, Mixin);
 		}).toThrow(err.ALREADY_PRESENT('clashingThingy', 'mixin', 'target'));
 	});
 
@@ -123,7 +123,7 @@ describe("topiary.mixin", function() {
 		Class.prototype.clashingThingy = function() {};
 
 		try {
-			topiary.mixin(Class, Mixin);
+			topiarist.mixin(Class, Mixin);
 		} catch (e) {}
 
 		expect(Class.prototype.thingy).toBeUndefined();
@@ -132,10 +132,10 @@ describe("topiary.mixin", function() {
 	it("does not throw an error if we are mixing in functionality that has already been mixed in.", function() {
 		function Parent() {}
 		Mixin.prototype.mixinFunc = function() {};
-		topiary.mixin(Parent, Mixin);
-		topiary.extend(Class, Parent);
+		topiarist.mixin(Parent, Mixin);
+		topiarist.extend(Class, Parent);
 
-		topiary.mixin(Class, Mixin);
+		topiarist.mixin(Class, Mixin);
 
 		var instance = new Class();
 		expect(typeof instance.mixinFunc).toBe('function');
@@ -144,7 +144,7 @@ describe("topiary.mixin", function() {
 	it("can mix in functionality from mixins without constructor functions.", function() {
 		var mixinFuncRan = false;
 
-		topiary.mixin(Class, {
+		topiarist.mixin(Class, {
 			mixinFunc: function() {
 				mixinFuncRan = true;
 			}
