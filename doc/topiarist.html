@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Namespace: topiary</title>
+    <title>JSDoc: Namespace: topiarist</title>
     
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Namespace: topiary</h1>
+    <h1 class="page-title">Namespace: topiarist</h1>
     
     
 
@@ -27,7 +27,7 @@
     
 <header>
     <h2>
-    topiary
+    topiarist
     </h2>
     
 </header>  
@@ -62,7 +62,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="topiary.js.html">topiary.js</a>, <a href="topiary.js.html#line1">line 1</a>
+        <a href="topiarist.js.html">topiarist.js</a>, <a href="topiarist.js.html#line1">line 1</a>
     </li></ul></dd>
     
     
@@ -96,7 +96,7 @@
         <dl>
             
 <dt>
-    <h4 class="name" id="classFulfills"><span class="type-signature">&lt;static> </span>classFulfills<span class="signature">(classdef, protocol)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="classFulfills"><span class="type-signature">&lt;static> </span>classFulfills<span class="signature">(classDefinition, protocol)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
     
     
 </dt>
@@ -104,7 +104,7 @@
     
     
     <div class="description">
-        Checks that a class provides a prototype that will fulfill a protocol.
+        Checks that a class provides a prototype that will fulfil a protocol.
     </div>
     
 
@@ -138,7 +138,7 @@
 	
         <tr>
             
-                <td class="name"><code>classdef</code></td>
+                <td class="name"><code>classDefinition</code></td>
             
             
             <td class="type">
@@ -211,7 +211,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="topiary.js.html">topiary.js</a>, <a href="topiary.js.html#line294">line 294</a>
+        <a href="topiarist.js.html">topiarist.js</a>, <a href="topiarist.js.html#line367">line 367</a>
     </li></ul></dd>
     
     
@@ -257,7 +257,7 @@
         
             
 <dt>
-    <h4 class="name" id="extend"><span class="type-signature">&lt;static> </span>extend<span class="signature">(classdef, superclass)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="extend"><span class="type-signature">&lt;static> </span>extend<span class="signature">(classDefinition, superclass, <span class="optional">extraProperties</span>)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -265,7 +265,7 @@
     
     
     <div class="description">
-        Sets up the prototype chain for inheritance.<p>As well as setting up the prototype chain, this also copies so called 'static'definitions from the superclass to the subclass, makes sure that constructorwill return the correct thing, and provides a 'superclass' property.</p>
+        Sets up the prototype chain for inheritance.<p>As well as setting up the prototype chain, this also copies so called 'class'definitions from the superclass to the subclass and makes sure that constructorwill return the correct thing.</p>
     </div>
     
 
@@ -287,6 +287,8 @@
 		<th>Type</th>
 		
 		
+		<th>Argument</th>
+		
 		
 		
 		
@@ -299,7 +301,7 @@
 	
         <tr>
             
-                <td class="name"><code>classdef</code></td>
+                <td class="name"><code>classDefinition</code></td>
             
             
             <td class="type">
@@ -311,6 +313,16 @@
             
             </td>
             
+            
+                <td class="attributes">
+                
+                    
+                
+                    &lt;nullable><br>
+                
+                    
+                
+                </td>
             
             
             
@@ -335,10 +347,53 @@
             </td>
             
             
+                <td class="attributes">
+                
+                    
+                
+                    
+                
+                </td>
+            
             
             
             
             <td class="description last">The constructor of the superclass.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>extraProperties</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+            
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+                    
+                
+                    &lt;nullable><br>
+                
+                    
+                
+                </td>
+            
+            
+            
+            
+            <td class="description last">An object of extra properties to add to the subclasses prototype.</td>
         </tr>
 	
 	
@@ -369,7 +424,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="topiary.js.html">topiary.js</a>, <a href="topiary.js.html#line37">line 37</a>
+        <a href="topiarist.js.html">topiarist.js</a>, <a href="topiarist.js.html#line58">line 58</a>
     </li></ul></dd>
     
     
@@ -524,7 +579,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="topiary.js.html">topiary.js</a>, <a href="topiary.js.html#line272">line 272</a>
+        <a href="topiarist.js.html">topiarist.js</a>, <a href="topiarist.js.html#line321">line 321</a>
     </li></ul></dd>
     
     
@@ -574,7 +629,7 @@
         
             
 <dt>
-    <h4 class="name" id="implement"><span class="type-signature">&lt;static> </span>implement<span class="signature">(classdef, protocol)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="implement"><span class="type-signature">&lt;static> </span>implement<span class="signature">(classDefinition, protocol)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -616,7 +671,7 @@
 	
         <tr>
             
-                <td class="name"><code>classdef</code></td>
+                <td class="name"><code>classDefinition</code></td>
             
             
             <td class="type">
@@ -686,7 +741,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="topiary.js.html">topiary.js</a>, <a href="topiary.js.html#line146">line 146</a>
+        <a href="topiarist.js.html">topiarist.js</a>, <a href="topiarist.js.html#line216">line 216</a>
     </li></ul></dd>
     
     
@@ -734,7 +789,7 @@
     
     
     <div class="description">
-        Provides multiple inheritance through copying.<p>This is discouraged; you should prefer to use aggregation first,single inheritance (extends) second, mixins third and this asa last resort.</p>
+        Provides multiple inheritance through copying.<p>This is discouraged; you should prefer to use aggregation first,single inheritance (extends) second, mixins third and this asa last resort.</p>
     </div>
     
 
@@ -841,7 +896,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="topiary.js.html">topiary.js</a>, <a href="topiary.js.html#line107">line 107</a>
+        <a href="topiarist.js.html">topiarist.js</a>, <a href="topiarist.js.html#line166">line 166</a>
     </li></ul></dd>
     
     
@@ -981,7 +1036,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="topiary.js.html">topiary.js</a>, <a href="topiary.js.html#line228">line 228</a>
+        <a href="topiarist.js.html">topiarist.js</a>, <a href="topiarist.js.html#line297">line 297</a>
     </li></ul></dd>
     
     
@@ -1031,7 +1086,7 @@
         
             
 <dt>
-    <h4 class="name" id="isAssignableFrom"><span class="type-signature">&lt;static> </span>isAssignableFrom<span class="signature">(classdef, constructor)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="isAssignableFrom"><span class="type-signature">&lt;static> </span>isAssignableFrom<span class="signature">(classDefinition, constructor)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
     
     
 </dt>
@@ -1073,7 +1128,7 @@
 	
         <tr>
             
-                <td class="name"><code>classdef</code></td>
+                <td class="name"><code>classDefinition</code></td>
             
             
             <td class="type">
@@ -1143,7 +1198,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="topiary.js.html">topiary.js</a>, <a href="topiary.js.html#line203">line 203</a>
+        <a href="topiarist.js.html">topiarist.js</a>, <a href="topiarist.js.html#line273">line 273</a>
     </li></ul></dd>
     
     
@@ -1201,7 +1256,7 @@
     
     
     <div class="description">
-        Mixes functionality in to a class.<p>Only functions are mixed in.</p><p>Code in the mixin is sandboxed and only has access to a 'mixin instance' rather thanthe real instance.</p>
+        Mixes functionality in to a class.<p>Only functions are mixed in.</p><p>Code in the mixin is sandboxed and only has access to a 'mixin instance' rather thanthe real instance.</p>
     </div>
     
 
@@ -1308,7 +1363,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="topiary.js.html">topiary.js</a>, <a href="topiary.js.html#line73">line 73</a>
+        <a href="topiarist.js.html">topiarist.js</a>, <a href="topiarist.js.html#line131">line 131</a>
     </li></ul></dd>
     
     
@@ -1349,13 +1404,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Namespaces</h3><ul><li><a href="topiary.html">topiary</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Namespaces</h3><ul><li><a href="topiarist.html">topiarist</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Thu Jun 20 2013 22:30:20 GMT+0100 (BST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Mon Nov 11 2013 09:49:45 GMT-0000 (GMT)
 </footer>
 
 <script> prettyPrint(); </script>
