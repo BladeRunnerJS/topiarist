@@ -46,7 +46,7 @@ This library provides the following action methods:
 And the following query methods:
 
 * `topiarist.isA(instance, parent)` which returns true if the instance is of a type which has been declared to be descended from the parent, e.g. because it's extended or implemented or mixed-in.
-* `topiarist.isAssignableFrom(class, parent)` which returns true if the class has been declared to be descended from the parent, e.g. through extension, implementation, etc.
+* `topiarist.classIsA(class, parent)` which returns true if the class has been declared to be descended from the parent, e.g. through extension, implementation, etc.
 * `topiarist.fulfills(instance, interface)` which returns true if the instance supports everything on the interface.
 * `topiarist.classFulfills(class, interface)` which returns true if instances of the class will be created supporting everything on the interface.
 
@@ -54,4 +54,3 @@ The following convenience methods are also provided:
 
 * `topiarist.install()` which copies the appropriate methods onto the Function and Object prototype, renaming them where appropriate.  This lets you do things like `Subclass.extends(Superclass)`
 * `topiarist.export()` which copies the appropriate methods onto the global object so they can be accessed directly.
-
