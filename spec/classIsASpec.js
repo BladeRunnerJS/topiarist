@@ -1,5 +1,5 @@
 /* global describe, beforeEach, it, expect, topiarist, err */
-describe("topiarist.isAssignableFrom", function() {
+describe("topiarist.classIsA", function() {
 	if (typeof topiarist === 'undefined') topiarist = require('../lib/topiarist.js');
 	var err = topiarist._err;
 
@@ -42,41 +42,41 @@ describe("topiarist.isAssignableFrom", function() {
 
 	it('throws an error if the class is not a constructor.', function() {
 		expect( function() {
-			topiarist.isAssignableFrom(34, ParentClass);
-		}).toThrow(err.NOT_CONSTRUCTOR('Class', 'isAssignableFrom', 'number'));
+			topiarist.classIsA(34, ParentClass);
+		}).toThrow(err.NOT_CONSTRUCTOR('Class', 'classIsA', 'number'));
 	});
 
 	it('throws an error if the potential assignee is not a constructor.', function() {
 		expect( function() {
-			topiarist.isAssignableFrom(ChildClass, 34);
-		}).toThrow(err.NOT_CONSTRUCTOR('Parent', 'isAssignableFrom', 'number'));
+			topiarist.classIsA(ChildClass, 34);
+		}).toThrow(err.NOT_CONSTRUCTOR('Parent', 'classIsA', 'number'));
 	});
 
 	it('returns true for a class and itself.', function() {
-		expect( topiarist.isAssignableFrom(ChildClass, ChildClass)).toBe( true );
+		expect( topiarist.classIsA(ChildClass, ChildClass)).toBe( true );
 	});
 
 	it('returns true for a class and an interface it implements.', function() {
-		expect( topiarist.isAssignableFrom(ChildClass, InterfaceClass)).toBe( true );
+		expect( topiarist.classIsA(ChildClass, InterfaceClass)).toBe( true );
 	});
 
 	it('returns true for a class and a mixin it mixed in (theoretically, a violation, but this is probably useful behaviour).', function() {
-		expect( topiarist.isAssignableFrom(ChildClass, MixinClass)).toBe( true );
+		expect( topiarist.classIsA(ChildClass, MixinClass)).toBe( true );
 	});
 
 	it('returns true for a class and a class it extends.', function() {
-		expect( topiarist.isAssignableFrom(ChildClass, ParentClass)).toBe( true );
+		expect( topiarist.classIsA(ChildClass, ParentClass)).toBe( true );
 	});
 
 	it('returns true for a class and an interface that a parent extends.', function() {
-		expect( topiarist.isAssignableFrom(ChildClass, ParentsInterface)).toBe( true );
+		expect( topiarist.classIsA(ChildClass, ParentsInterface)).toBe( true );
 	});
 
 	it('returns true for a class and something the parent mixed in (theoretically, a violation, but this is probably useful behaviour).', function() {
-		expect( topiarist.isAssignableFrom(ChildClass, ParentsMixin)).toBe( true );
+		expect( topiarist.classIsA(ChildClass, ParentsMixin)).toBe( true );
 	});
 
 	it('returns false for a class and an unrelated other class.', function() {
-		expect( topiarist.isAssignableFrom(ChildClass, OtherClass)).toBe( false );
+		expect( topiarist.classIsA(ChildClass, OtherClass)).toBe( false );
 	});
 });
