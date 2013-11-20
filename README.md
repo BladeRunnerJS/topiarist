@@ -18,8 +18,8 @@ Details
 -------
 
 You can see the main page [here](http://BladeRunnerJS.github.io/topiarist/), or the git repository [here](https://github.com/BladeRunnerJS/topiarist).
-The specification is [here](specs).
-Actual js file is at https://github.com/BladeRunnerJS/topiarist/blob/gh-pages/lib/topiarist.js.
+The specification is [here](https://github.com/BladeRunnerJS/topiarist/tree/gh-pages/spec).
+Actual js file is at <https://github.com/BladeRunnerJS/topiarist/blob/gh-pages/lib/topiarist.js>.
 
 This page has the library loaded so you can experiment by opening up a console.
 
