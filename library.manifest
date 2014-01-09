@@ -1,2 +1,2 @@
-depends: browser-modules
+depends: bootstrap
 js: lib/topiarist.js
