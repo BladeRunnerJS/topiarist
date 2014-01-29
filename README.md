@@ -21,6 +21,8 @@ You can see the main page [here](http://BladeRunnerJS.github.io/topiarist/), or 
 The specification is [here](https://github.com/BladeRunnerJS/topiarist/tree/gh-pages/spec).
 Actual js file is at <https://github.com/BladeRunnerJS/topiarist/blob/gh-pages/lib/topiarist.js>.
 
+You can also read the [introductory blog post](http://bladerunnerjs.org/blog/topiarist/).
+
 This page has the library loaded so you can experiment by opening up a console.
 
 
