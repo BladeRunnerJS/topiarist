@@ -1,2 +1,3 @@
 depends: bootstrap
 js: lib/topiarist.js
+exports: topiarist
