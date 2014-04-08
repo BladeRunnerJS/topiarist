@@ -3,7 +3,7 @@ describe("topiarist.classIsA", function() {
 	if (typeof topiarist === 'undefined') topiarist = require('../lib/topiarist.js');
 	var err = topiarist._err;
 
-	var ChildClass, ParentClass, InterfaceClass, MixinClass, OtherClass, ParentsInterface, ParentsMixin;
+	var ChildClass, ChildThatInheriets, ParentClass, InterfaceClass, MixinClass, OtherClass, ParentsInterface, ParentsMixin;
 
 	beforeEach(function() {
 		// This horrible structure is to avoid a bug in IE8 where the obvious way of writing this
@@ -38,6 +38,11 @@ describe("topiarist.classIsA", function() {
 		topiarist.extend(ChildClass, ParentClass);
 		topiarist.mixin(ChildClass, MixinClass);
 		topiarist.implement(ChildClass, InterfaceClass);
+
+		ChildThatInheriets = (function() {
+			return function ChildThatInheriets() {};
+		})();
+		topiarist.inherit(ChildThatInheriets, OtherClass);
 	});
 
 	it('throws an error if the class is not a constructor.', function() {
@@ -78,5 +83,9 @@ describe("topiarist.classIsA", function() {
 
 	it('returns false for a class and an unrelated other class.', function() {
 		expect( topiarist.classIsA(ChildClass, OtherClass)).toBe( false );
+	});
+
+	it('returns true for a class that inheriets other class.', function() {
+		expect( topiarist.classIsA(ChildThatInheriets, OtherClass)).toBe( true );
 	});
 });
