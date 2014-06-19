@@ -55,4 +55,4 @@ And the following query methods:
 The following convenience methods are also provided:
 
 * `topiarist.install()` which copies the appropriate methods onto the Function and Object prototype, renaming them where appropriate.  This lets you do things like `Subclass.extends(Superclass)`
-* `topiarist.export()` which copies the appropriate methods onto the global object so they can be accessed directly.
+* `topiarist.exportTo()` which copies the appropriate methods onto the global object so they can be accessed directly.
