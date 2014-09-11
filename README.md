@@ -41,6 +41,7 @@ Usage
 This library provides the following action methods:
 
 * `topiarist.extend(subclass, superclass)` which implements classical single inheritance by setting up the prototype chain.
+* `topiarist.implement(class, interface)` which declares a classes intention to implement an interface, where verification is delayed until after the class has been finalized.
 * `topiarist.hasImplemented(class, interface)` which declares that a class implements an interface and throws an exception if it does not.
 * `topiarist.inherit(class, parent)` which provides multiple inheritance by copying functionality from the parent to the class.
 * `topiarist.mixin(class, mixin)` which provides mixin inheritance, sandboxing mixin methods that are copied onto the class.
