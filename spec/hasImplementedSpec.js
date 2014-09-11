@@ -1,5 +1,5 @@
 /* global describe, beforeEach, it, expect, topiarist, err */
-describe("topiarist.implement", function() {
+describe("topiarist.hasImplemented", function() {
 	if (typeof topiarist === 'undefined') topiarist = require('../lib/topiarist.js');
 	var err = topiarist._err;
 
@@ -22,20 +22,20 @@ describe("topiarist.implement", function() {
 	it("throws an error if the class is not a function.", function() {
 		Class = 23;
 		expect(function() {
-			topiarist.implement(Class, Interface);
-		}).toThrow(err.NOT_CONSTRUCTOR("Class", "implement", "number"));
+			topiarist.hasImplemented(Class, Interface);
+		}).toThrow(err.NOT_CONSTRUCTOR("Class", "hasImplemented", "number"));
 	});
 
 	it("throws an error if the interface is not a function.", function() {
 		Interface = 23;
 		expect(function() {
-			topiarist.implement(Class, Interface);
-		}).toThrow(err.NOT_CONSTRUCTOR('Protocol', 'implement', "number"));
+			topiarist.hasImplemented(Class, Interface);
+		}).toThrow(err.NOT_CONSTRUCTOR('Protocol', 'hasImplemented', "number"));
 	});
 
 	it("throws an error if the class doesn't implement all the methods specified by the interface.", function() {
 		expect(function() {
-			topiarist.implement(Class, Interface);
+			topiarist.hasImplemented(Class, Interface);
 		}).toThrow( err.DOES_NOT_IMPLEMENT('Class', ['interfaceMethod', 'anotherInterfaceMethod'].join("', '"), 'Interface') );
 	});
 
@@ -46,7 +46,7 @@ describe("topiarist.implement", function() {
 		Interface.staticMethod = function() {};
 
 		expect(function() {
-			topiarist.implement(Class, Interface);
+			topiarist.hasImplemented(Class, Interface);
 		}).toThrow(err.DOES_NOT_IMPLEMENT('Class', 'staticMethod (class method)', 'Interface'));
 	});
 
@@ -54,7 +54,7 @@ describe("topiarist.implement", function() {
 		Class.prototype.interfaceMethod = function() {};
 		Class.prototype.anotherInterfaceMethod = function() {};
 
-		topiarist.implement(Class, Interface);
+		topiarist.hasImplemented(Class, Interface);
 		expect(true).toBe(true);
 	});
 
@@ -65,7 +65,7 @@ describe("topiarist.implement", function() {
 		function ChildClass() {}
 		topiarist.extend(ChildClass, Class);
 
-		topiarist.implement(ChildClass, Interface);
+		topiarist.hasImplemented(ChildClass, Interface);
 		expect(true).toBe(true);
 	});
 
