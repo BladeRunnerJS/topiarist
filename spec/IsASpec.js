@@ -30,7 +30,7 @@ describe("topiarist.isA", function() {
 			return function ParentClass() {};
 		})();
 
-		topiarist.implement(ParentClass, ParentsInterface);
+		topiarist.hasImplemented(ParentClass, ParentsInterface);
 		topiarist.mixin(ParentClass, ParentsMixin);
 
 		ChildClass = (function() {
@@ -39,7 +39,7 @@ describe("topiarist.isA", function() {
 		topiarist.extend(ChildClass, ParentClass);
 		topiarist.mixin(ChildClass, MixinClass);
 		topiarist.mixin(ChildClass, ObjMixin);
-		topiarist.implement(ChildClass, InterfaceClass);
+		topiarist.hasImplemented(ChildClass, InterfaceClass);
 
 		instance = new ChildClass();
 	});
