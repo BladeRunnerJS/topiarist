@@ -11,7 +11,7 @@ module.exports = function(grunt) {
         platform: "linux"
     }, {
         browserName: "internet explorer",
-        platform: "WIN8",
+        platform: "WIN8.1",
         version: "11"
     }, {
         browserName: "internet explorer",
@@ -45,7 +45,7 @@ module.exports = function(grunt) {
                     build: process.env.TRAVIS_JOB_ID,
                     concurrency: 3,
                     browsers: browsers,
-                    testname: "jasmine tests"
+                    testname: "topiarist tests"
                 }
             }
         },
