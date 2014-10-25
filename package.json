@@ -26,7 +26,8 @@
 	},
 	"scripts": {
 		"test": "jasmine-node --verbose spec",
-		"saucelabs-test": "grunt saucelabs-test"
+		"saucelabs-test": "grunt saucelabs-test",
+		"test-performance": "node scripts/test-performance.js"
 	},
 	"bundledDependencies": [
 		"jasmine-standalone"
