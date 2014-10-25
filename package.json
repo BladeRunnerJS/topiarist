@@ -1,6 +1,6 @@
 {
 	"name": "topiarist",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"author": "kybernetikos <kybernetikos@gmail.com>",
 	"description": "Topiarist provides tree and shape-based type verification for JavaScript.",
 	"main": "./lib/topiarist.js",
