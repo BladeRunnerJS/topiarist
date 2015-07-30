@@ -1,6 +1,6 @@
 /* global describe, beforeEach, it, expect, topiarist, err */
 describe("topiarist.classFulfills", function() {
-	if (typeof topiarist === 'undefined') topiarist = require('../lib/topiarist.js');
+	if (typeof topiarist === 'undefined') topiarist = require('../src/topiarist.js');
 	var err = topiarist._err;
 
 	var Class, Interface;

@@ -3,7 +3,7 @@
 	"version": "0.1.1",
 	"author": "kybernetikos <kybernetikos@gmail.com>",
 	"description": "Topiarist provides tree and shape-based type verification for JavaScript.",
-	"main": "./lib/topiarist.js",
+	"main": "./src/topiarist.js",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
@@ -17,7 +17,7 @@
 		"interface"
 	],
 	"scripts": {
-		"test": "jasmine-node --verbose spec",
+		"test": "jasmine-node --verbose test",
 		"saucelabs-test": "grunt saucelabs-test",
 		"test-performance": "node scripts/test-performance.js"
 	},

@@ -4,7 +4,7 @@ permalink: /index.html
 title: topiarist
 ---
 
-<script type="text/javascript" src="lib/topiarist.js">
+<script type="text/javascript" src="src/topiarist.js">
 </script>
 
 Topiarist
@@ -18,8 +18,8 @@ Details
 -------
 
 You can see the main page [here](http://BladeRunnerJS.github.io/topiarist/), or the git repository [here](https://github.com/BladeRunnerJS/topiarist).
-The specification is [here](https://github.com/BladeRunnerJS/topiarist/tree/gh-pages/spec).
-Actual js file is at <https://github.com/BladeRunnerJS/topiarist/blob/gh-pages/lib/topiarist.js>.
+The specification is [here](https://github.com/BladeRunnerJS/topiarist/tree/gh-pages/test).
+Actual js file is at <https://github.com/BladeRunnerJS/topiarist/blob/gh-pages/src/topiarist.js>.
 
 You can also read the [introductory blog post](http://bladerunnerjs.org/blog/topiarist/).
 
