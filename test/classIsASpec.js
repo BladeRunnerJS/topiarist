@@ -1,15 +1,17 @@
+'use strict';
+
 var topiarist = require('..');
 var err = require('./errorFuncs');
 var expect = require('expectations');
 
-/* global describe, beforeEach, it, expect, topiarist, err */
-describe("topiarist.classIsA", function() {
+describe('topiarist.classIsA', function() {
 	var ChildClass, ChildThatInherits, ParentClass, InterfaceClass, MixinClass, OtherClass, ParentsInterface, ParentsMixin;
 
 	beforeEach(function() {
 		// This horrible structure is to avoid a bug in IE8 where the obvious way of writing this
 		// would have created *locals* ChildClass and ParentClass and not modified the values from
 		// the above scope.
+		/*eslint no-shadow:0*/
 		InterfaceClass = (function() {
 			return function InterfaceClass() {};
 		})();
@@ -49,13 +51,13 @@ describe("topiarist.classIsA", function() {
 	it('throws an error if the class is not a constructor.', function() {
 		expect( function() {
 			topiarist.classIsA(34, ParentClass);
-		}).toThrow(err.NOT_CONSTRUCTOR('Class', 'classIsA', 'number'));
+		}).toThrow(err._NOT_CONSTRUCTOR('Class', 'classIsA', 'number'));
 	});
 
 	it('throws an error if the potential assignee is not a constructor.', function() {
 		expect( function() {
 			topiarist.classIsA(ChildClass, 34);
-		}).toThrow(err.NOT_CONSTRUCTOR('Parent', 'classIsA', 'number'));
+		}).toThrow(err._NOT_CONSTRUCTOR('Parent', 'classIsA', 'number'));
 	});
 
 	it('returns true for a class and itself.', function() {

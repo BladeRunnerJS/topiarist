@@ -13,13 +13,13 @@ function errorFuncs() {
 			args.unshift(message);
 			var result = msg.apply(null, args);
 			if (result === null) {
-				throw new Error("No such error message " + key);
+				throw new Error('No such error message ' + key);
 			}
 			return result;
 		};
 	};
 	for (var key in ERROR_MESSAGES) {
-		err[key] = getErr(key);
+		err['_' + key] = getErr(key);
 	}
 
 	return err;

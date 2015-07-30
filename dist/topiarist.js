@@ -39,6 +39,8 @@ function msg(str) {
 module.exports = msg;
 
 },{}],3:[function(require,module,exports){
+(function (global){
+/*eslint no-proto:0*/
 'use strict';
 
 var ERROR_MESSAGES = require('./messages');
@@ -106,7 +108,7 @@ function extend(classDefinition, superclass, extraProperties) {
 
 	// create the prototype with a constructor function.
 	classDefinition.prototype = Object.create(superclass.prototype, {
-		"constructor": { enumerable: false,	value: classDefinition }
+		'constructor': { enumerable: false,	value: classDefinition }
 	});
 
 	// copy everything from extra properties.
@@ -120,7 +122,7 @@ function extend(classDefinition, superclass, extraProperties) {
 
 	// this is purely to work around a bad ie8 shim, when ie8 is no longer needed it can be deleted.
 	if (classDefinition.prototype.hasOwnProperty('__proto__')) {
-		delete classDefinition.prototype['__proto__'];
+		delete classDefinition.prototype.__proto__;
 	}
 
 	clearAssignableCache(classDefinition, superclass);
@@ -137,25 +139,25 @@ function extend(classDefinition, superclass, extraProperties) {
 *
 * @memberOf topiarist
 * @param {function} target
-* @param {function|Object} mix
+* @param {function|Object} Mix
 */
-function mixin(target, mix) {
+function mixin(target, Mix) {
 	assertArgumentOfType('function', target, ERROR_MESSAGES.NOT_CONSTRUCTOR, 'Target', 'mixin');
 
-	mix = toFunction(
-		mix,
+	Mix = toFunction(
+		Mix,
 		new TypeError(
 			msg(
 				ERROR_MESSAGES.WRONG_TYPE,
 				'Mix',
 				'mixin',
 				'non-null object or function',
-				mix === null ? 'null' : typeof mix
+				Mix === null ? 'null' : typeof Mix
 			)
 		)
 	);
 
-	var targetPrototype = target.prototype, mixinProperties = mix.prototype, resultingProperties = {};
+	var targetPrototype = target.prototype, mixinProperties = Mix.prototype, resultingProperties = {};
 	var mixins = nonenum(target, '__multiparents__', []);
 	var myMixId = mixins.length;
 
@@ -163,13 +165,13 @@ function mixin(target, mix) {
 		// property might spuriously be 'constructor' if you are in ie8 and using a shim.
 		if (typeof mixinProperties[property] === 'function' && property !== 'constructor') {
 			if (property in targetPrototype === false) {
-				resultingProperties[property] = getSandboxedFunction(myMixId, mix, mixinProperties[property]);
+				resultingProperties[property] = getSandboxedFunction(myMixId, Mix, mixinProperties[property]);
 			} else if (targetPrototype[property].__original__ !== mixinProperties[property]) {
 				throw new Error(
 					msg(
 						ERROR_MESSAGES.PROPERTY_ALREADY_PRESENT,
 						property,
-						className(mix, 'mixin'),
+						className(Mix, 'mixin'),
 						className(target, 'target')
 					)
 				);
@@ -178,9 +180,9 @@ function mixin(target, mix) {
 	}
 
 	copy(resultingProperties, targetPrototype);
-	mixins.push(mix);
+	mixins.push(Mix);
 
-	clearAssignableCache(target, mix);
+	clearAssignableCache(target, Mix);
 
 	return target;
 }
@@ -406,7 +408,7 @@ function classIsA(classDefinition, constructor) {
 */
 function isA(instance, parent) {
 	if(instance == null) {
-		assertArgumentNotNullOrUndefined(instance, ERROR_MESSAGES.NULL, 'Object', 'isA');;
+		assertArgumentNotNullOrUndefined(instance, ERROR_MESSAGES.NULL, 'Object', 'isA');
 	}
 
 	// sneaky edge case where we're checking against an object literal we've mixed in or against a prototype of
@@ -526,8 +528,12 @@ function isOverriderOf(propertyName, sub, ancestor) {
 	var parents = getImmediateParents(sub);
 	for (var i = 0; i < parents.length; ++i) {
 		var parent = parents[i];
-		if (parent.prototype[propertyName] === ancestor.prototype[propertyName]) return true;
-		if (isOverriderOf(propertyName, parent, ancestor)) return true;
+		if (parent.prototype[propertyName] === ancestor.prototype[propertyName]) {
+			return true;
+		}
+		if (isOverriderOf(propertyName, parent, ancestor)) {
+			return true;
+		}
 	}
 
 	return false;
@@ -573,7 +579,9 @@ function toFunction(obj, couldNotCastError) {
 	var result;
 	if (typeof obj === 'object') {
 		if (obj.hasOwnProperty('constructor')) {
-			if (obj.constructor.prototype !== obj) throw couldNotCastError;
+			if (obj.constructor.prototype !== obj) {
+				throw couldNotCastError;
+			}
 			result = obj.constructor;
 		} else {
 			var EmptyInitialiser = function() {};
@@ -695,15 +703,15 @@ function makeMethod(func) {
 * Mixin functions are sandboxed into their own instance.
 * @private
 */
-function getSandboxedFunction(myMixId, mix, func) {
+function getSandboxedFunction(myMixId, Mix, func) {
 	var result = function() {
 		var mixInstances = nonenum(this, '__multiparentInstances__', []);
 		var mixInstance = mixInstances[myMixId];
 		if (mixInstance == null) {
-			if (typeof mix === 'function') {
-				mixInstance = new mix();
+			if (typeof Mix === 'function') {
+				mixInstance = new Mix();
 			} else {
-				mixInstance = Object.create(mix);
+				mixInstance = Object.create(Mix);
 			}
 			// could add a nonenum pointer to __this__ or something if we wanted to allow escape from the sandbox.
 			mixInstances[myMixId] = mixInstance;
@@ -712,7 +720,7 @@ function getSandboxedFunction(myMixId, mix, func) {
 	};
 
 	nonenum(result, '__original__', func);
-	nonenum(result, '__source__', mix);
+	nonenum(result, '__source__', Mix);
 
 	return result;
 }
@@ -761,9 +769,6 @@ var methods = {
 	'isA': isA, 'fulfills': fulfills, 'classFulfills': classFulfills
 };
 
-/* jshint evil:true */
-var global = (new Function('return this;'))();
-
 var exporting = {
 	'exportTo': function(to) {
 		copy(methods, to || global, true);
@@ -772,7 +777,7 @@ var exporting = {
 		if (arguments.length > 0 && typeof target !== 'function') {
 			throw new Error(msg(ERROR_MESSAGES.BAD_INSTALL, typeof target));
 		}
-		var isGlobalInstall = arguments.length < 1
+		var isGlobalInstall = arguments.length < 1;
 
 		copy({
 			isA: makeMethod(methods.isA),
@@ -796,7 +801,7 @@ var exporting = {
 		};
 		if (isGlobalInstall) {
 			// no point in having subclass.extends unless it's global.
-			itemsToInstallToFunction['extends'] = makeMethod(methods.extend);
+			itemsToInstallToFunction.extends = makeMethod(methods.extend);
 		}
 
 		copy(itemsToInstallToFunction, isGlobalInstall ? Function.prototype : target, isGlobalInstall);
@@ -804,7 +809,7 @@ var exporting = {
 		return target;
 	}
 };
-exporting['export'] = exporting.exportTo; // for backwards compatibility
+exporting.export = exporting.exportTo; // for backwards compatibility
 
 methods.Base = exporting.install(function BaseClass() {});
 
@@ -812,5 +817,6 @@ copy(methods, exporting);
 
 module.exports = exporting;
 
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./messages":1,"./msg":2}]},{},[3])(3)
 });

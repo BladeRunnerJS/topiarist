@@ -1,15 +1,16 @@
+'use strict';
+
 var topiarist = require('..');
-var err = require('./errorFuncs');
 var expect = require('expectations');
 
-/* global describe, beforeEach, it, expect, topiarist, err */
-describe("topiarist.isA", function() {
+describe('topiarist.isA', function() {
 	var instance, ChildClass, ParentClass, InterfaceClass, MixinClass, OtherClass, ParentsInterface, ParentsMixin, ObjMixin;
 
 	beforeEach(function() {
 		// This horrible structure is to avoid a bug in IE8 where the obvious way of writing this
 		// would have created *locals* ChildClass and ParentClass and not modified the values from
 		// the above scope.
+		/*eslint no-shadow:0*/
 		InterfaceClass = (function() {
 			return function InterfaceClass() {};
 		})();
