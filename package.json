@@ -17,20 +17,23 @@
     "interface"
   ],
   "scripts": {
-		"prepublish": "browserify src/topiarist.js -s topiarist -o dist/topiarist.js",
-    "test": "npm run test:node",
+    "prepublish": "browserify src/topiarist.js -s topiarist -o dist/topiarist.js",
+    "test": "npm run test:node && npm run test:browser && npm run test:saucelabs",
     "test:node": "mocha test",
-    "saucelabs-test": "grunt saucelabs-test",
+    "test:browser": "karma start",
+    "test:saucelabs": "karma start karma-saucelabs.conf.js",
     "test-performance": "node scripts/test-performance.js"
   },
   "devDependencies": {
     "browserify": "^11.0.1",
     "expectations": "^0.5.1",
-    "grunt": "0.4.5",
-    "grunt-cli": "0.1.13",
-    "grunt-contrib-connect": "0.8.0",
-    "grunt-contrib-watch": "0.6.1",
-    "grunt-saucelabs": "8.3.2",
+    "karma": "^0.13.3",
+    "karma-browserify": "^4.2.1",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-cli": "^0.1.0",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-mocha": "^0.2.0",
+    "karma-sauce-launcher": "^0.2.14",
     "mocha": "^2.2.5",
     "sinon": "^1.15.4"
   }
