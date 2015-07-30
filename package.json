@@ -17,12 +17,14 @@
     "interface"
   ],
   "scripts": {
+		"prepublish": "browserify src/topiarist.js -s topiarist -o dist/topiarist.js",
     "test": "npm run test:node",
     "test:node": "mocha test",
     "saucelabs-test": "grunt saucelabs-test",
     "test-performance": "node scripts/test-performance.js"
   },
   "devDependencies": {
+    "browserify": "^11.0.1",
     "expectations": "^0.5.1",
     "grunt": "0.4.5",
     "grunt-cli": "0.1.13",
