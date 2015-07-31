@@ -24,7 +24,7 @@
     "test:browser": "karma start",
     "test:saucelabs": "karma start karma-saucelabs.conf.js",
     "test:browser:debug": "karma start karma-debug.conf.js",
-    "test-performance": "node scripts/test-performance.js"
+    "test:performance": "node test-performance.js"
   },
   "devDependencies": {
     "browserify": "^11.0.1",
