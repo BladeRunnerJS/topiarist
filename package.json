@@ -1,6 +1,6 @@
 {
   "name": "topiarist",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "kybernetikos <kybernetikos@gmail.com>",
   "description": "Topiarist provides tree and shape-based type verification for JavaScript.",
   "main": "src/topiarist.js",
@@ -19,7 +19,7 @@
   "scripts": {
     "prepublish": "browserify src/topiarist.js -s topiarist -o dist/topiarist.js",
     "test": "npm run test:lint && npm run test:node && npm run test:browser && npm run test:saucelabs",
-		"test:lint": "eslint src test",
+    "test:lint": "eslint src test",
     "test:node": "mocha test",
     "test:browser": "karma start",
     "test:saucelabs": "karma start karma-saucelabs.conf.js",
