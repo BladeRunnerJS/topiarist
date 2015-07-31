@@ -23,6 +23,7 @@
     "test:node": "mocha test",
     "test:browser": "karma start",
     "test:saucelabs": "karma start karma-saucelabs.conf.js",
+    "test:browser:debug": "karma start karma-debug.conf.js",
     "test-performance": "node scripts/test-performance.js"
   },
   "devDependencies": {
