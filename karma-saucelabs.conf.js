@@ -10,6 +10,18 @@ module.exports = function(config) {
 			platform: 'Windows 7',
 			version: '43'
 		},
+		SauceLabs_IE8_XP: {
+			base: 'SauceLabs',
+			browserName: 'internet explorer',
+			platform: 'Windows xp',
+			version: '8'
+		},
+		SauceLabs_IE8_Win7: {
+			base: 'SauceLabs',
+			browserName: 'internet explorer',
+			platform: 'Windows 7',
+			version: '8'
+		},
 		SauceLabs_IE9: {
 			base: 'SauceLabs',
 			browserName: 'internet explorer',

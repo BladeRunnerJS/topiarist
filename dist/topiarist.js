@@ -220,7 +220,7 @@ function inherit(target, parent) {
 	var targetPrototype = target.prototype;
 	for (var propertyName in parent.prototype) {
 		// These properties should be nonenumerable in modern browsers, but shims might create them in ie8.
-		if (propertyName === 'constructor' || propertyName === '__proto__' || propertyName === 'toString') {
+		if (propertyName === 'constructor' || propertyName === '__proto__' || propertyName === 'toString' || propertyName.match(/^Symbol\(__proto__\)/)) {
 			continue;
 		}
 
@@ -801,7 +801,7 @@ var exporting = {
 		};
 		if (isGlobalInstall) {
 			// no point in having subclass.extends unless it's global.
-			itemsToInstallToFunction.extends = makeMethod(methods.extend);
+			itemsToInstallToFunction['extends'] = makeMethod(methods.extend);
 		}
 
 		copy(itemsToInstallToFunction, isGlobalInstall ? Function.prototype : target, isGlobalInstall);
@@ -809,7 +809,7 @@ var exporting = {
 		return target;
 	}
 };
-exporting.export = exporting.exportTo; // for backwards compatibility
+exporting['export'] = exporting.exportTo; // for backwards compatibility
 
 methods.Base = exporting.install(function BaseClass() {});
 
