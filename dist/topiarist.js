@@ -40,7 +40,7 @@ module.exports = msg;
 
 },{}],3:[function(require,module,exports){
 (function (global){
-/*eslint no-proto:0*/
+/*eslint no-proto:0, dot-notation:0*/
 'use strict';
 
 var ERROR_MESSAGES = require('./messages');
