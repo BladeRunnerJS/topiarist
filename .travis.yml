@@ -5,3 +5,7 @@ sudo: false
 before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
+env:
+  global:
+    - secure: VHYOzjYin4xJyZVH3mn/WDzD3VIAHTVqW9bTFE3suOIUyRX9xxUYzjSmsxIaH5dekKwRi99GowPbFRXSmgnb8WtA30sw8dMj1feZ4r0MiqZGKPOOTO/Z+Gu8vmfpbnZu9E7bP0Cjt0OMy1fsSuKIbZWmL5QxNtLsuS9sO955j74=
+    - secure: Rx6u/Yd5Y3ew0d3LL9wITHZFG8IqelMDUwhLe7i/wLUWHmLUBTBWBhJuFnB1AX/mVaxCKvMWgRLrSHhb/JlSFnT/KocahboIOD36XJfrqxYVSobuoJ+gIUtOTihkDOQUqRUp+vp46hFLSkEH6/GGuC57ZPGsw55NNnGZxRjdRTE=

@@ -46,7 +46,6 @@ module.exports = function(config) {
 		sauceLabs: {
 			testName: 'fell tests',
 			username: 'bladerunnerjs',
-			accessKey: 'c4d7ffe8-6b82-4f8c-9dbf-550bdfe18126',
 			connectOptions: {
         logfile: 'sauce_connect.log'
       }
