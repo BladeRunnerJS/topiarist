@@ -1,6 +1,4 @@
-_site
-*.iml
-*.idea
-node_modules/
-sauce_connect.log*
 npm-debug.log
+sauce_connect.log
+node_modules
+dist
