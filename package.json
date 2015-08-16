@@ -19,7 +19,9 @@
   "scripts": {
     "prepublish": "mkdirp dist && browserify src/topiarist.js -s topiarist -o dist/topiarist.js",
     "postpublish": "publish-release --assets dist/topiarist.js --notes 'Add release notes here.'",
-    "test": "npm run test:lint && npm run test:node && npm run test:browser && npm run test:saucelabs",
+    "pretest": "npm run pretest:lint",
+    "pretest:lint": "eslint src test",
+    "test": "npm run test:node && npm run test:browser && npm run test:saucelabs",
     "test:lint": "eslint src test",
     "test:node": "mocha test",
     "test:node:debug": "mocha test -w",
