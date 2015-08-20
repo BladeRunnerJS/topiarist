@@ -1,7 +1,7 @@
 'use strict';
 
-var ERROR_MESSAGES = require('../src/messages');
-var msg = require('../src/msg');
+var ERROR_MESSAGES = require('../messages');
+var msg = require('../msg');
 var slice = Array.prototype.slice;
 
 function errorFuncs() {

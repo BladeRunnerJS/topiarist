@@ -1,4 +1,4 @@
-var topiarist = require('./src/topiarist');
+var topiarist = require('./topiarist');
 
 function topiaristFunc(date, num) {
   topiarist.isA(date, Date);

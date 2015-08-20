@@ -3,7 +3,7 @@
   "version": "0.1.3",
   "author": "kybernetikos <kybernetikos@gmail.com>",
   "description": "Topiarist provides tree and shape-based type verification for JavaScript.",
-  "main": "src/topiarist.js",
+  "main": "topiarist.js",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -17,10 +17,10 @@
     "interface"
   ],
   "scripts": {
-    "prepublish": "mkdirp dist && browserify src/topiarist.js -s topiarist -o dist/topiarist.js",
+    "prepublish": "mkdirp dist && browserify topiarist.js -s topiarist -o dist/topiarist.js",
     "postpublish": "publish-release --assets dist/topiarist.js --notes 'Add release notes here.'",
     "pretest": "npm run pretest:lint",
-    "pretest:lint": "eslint src test",
+    "pretest:lint": "eslint topiarist.js messages.js msg.js test",
     "test": "npm run test:node && npm run test:browser && npm run test:saucelabs",
     "test:node": "mocha test",
     "test:node:debug": "mocha test -w",
