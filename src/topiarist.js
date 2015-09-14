@@ -80,7 +80,7 @@ function extend(classDefinition, superclass, extraProperties) {
 
 	// this is purely to work around a bad ie8 shim, when ie8 is no longer needed it can be deleted.
 	if (classDefinition.prototype.hasOwnProperty('__proto__')) {
-		delete classDefinition.prototype.__proto__;
+		delete classDefinition.prototype['__proto__'];
 	}
 
 	clearAssignableCache(classDefinition, superclass);
@@ -124,7 +124,7 @@ function mixin(target, Mix) {
 		if (typeof mixinProperties[property] === 'function' && property !== 'constructor') {
 			if (property in targetPrototype === false) {
 				resultingProperties[property] = getSandboxedFunction(myMixId, Mix, mixinProperties[property]);
-			} else if (targetPrototype[property].__original__ !== mixinProperties[property]) {
+			} else if (targetPrototype[property]['__original__'] !== mixinProperties[property]) {
 				throw new Error(
 					msg(
 						ERROR_MESSAGES.PROPERTY_ALREADY_PRESENT,
@@ -289,7 +289,7 @@ function fallbackIsAssignableFrom(classDefinition, parent) {
 	if (classDefinition === parent || classDefinition.prototype instanceof parent) {
 		return true;
 	}
-	var i, mixins = classDefinition.__multiparents__ || [], interfaces = classDefinition.__interfaces__ || [];
+	var i, mixins = classDefinition['__multiparents__'] || [], interfaces = classDefinition['__interfaces__'] || [];
 
 	// parent
 	var superPrototype = (classDefinition.superclass && classDefinition.superclass.prototype) ||
@@ -498,7 +498,7 @@ function isOverriderOf(propertyName, sub, ancestor) {
 }
 
 function getImmediateParents(sub) {
-	var parents = (sub.__multiparents__ || []).slice();
+	var parents = (sub['__multiparents__'] || []).slice();
 	var parentPrototype = (sub.superclass && sub.superclass.prototype) || getPrototypeOf(sub.prototype);
 	if (parentPrototype !== null && parentPrototype.constructor !== null && parentPrototype.constructor !== sub) {
 		parents.push(parentPrototype.constructor);
@@ -565,7 +565,7 @@ var currentId = 0;
 * @private
 */
 function classId(func) {
-	var result = func.__id__;
+	var result = func['__id__'];
 	if (result == null) {
 		result = nonenum(func, '__id__', currentId++);
 	}
@@ -689,7 +689,7 @@ function getSandboxedFunction(myMixId, Mix, func) {
 */
 function clearAssignableCache(target, parent) {
 	if ('__assignable_from_cache__' in target) {
-		delete target.__assignable_from_cache__[classId(parent)];
+		delete target['__assignable_from_cache__'][classId(parent)];
 	}
 }
 
